@@ -105,6 +105,10 @@
     return this.$element.find( this.options.formPageSelector ).length;
   };
 
+  /**
+   * Tries to move the form to a specific page
+   * @return {number}
+   */
   FormPages.prototype.goTo = function( page ) {
 
     // Page must be bigger than zero and less than the total pages
@@ -115,10 +119,18 @@
     return this.currentPage;
   };
 
+  /**
+   * Tries to move the form to the next page and returns the current page
+   * @return {number}
+   */
   FormPages.prototype.goToNextPage = function() {
     return this.goTo( this.currentPage + 1 );
   };
 
+  /**
+   * Tries to move the form to the prev page and returns the current page
+   * @return {number}
+   */
   FormPages.prototype.goToPrevPage = function() {
     return this.goTo( this.currentPage - 1 );
   };

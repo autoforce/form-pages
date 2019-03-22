@@ -5,6 +5,7 @@
  * @property {string} nextButtonSelector The selector for the "next" button
  * @property {string} prevButtonSelector The selector for the "previour" button
  * @property {string} submitButtonSelector The selector for the form submit button
+ * @property {('horizontal'|'vertical')} paginationDirection The direction that the form will move
  * @property {function} onNextPage Callback trigerred when the next page button is pressed
  * @property {function} onPrevPage Callback trigerred when the previous page button is pressed
  */
@@ -29,7 +30,8 @@
     formPageSelector: ".form-pages__page",
     nextButtonSelector: ".form-pages__next-button",
     prevButtonSelector: ".form-pages__prev-button",
-    submitButtonSelector: ".form-pages__submit-button"
+    submitButtonSelector: ".form-pages__submit-button",
+    paginationDirection: "horizontal"
   };
 
   const PLUGIN_NAME = "formPages",

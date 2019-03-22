@@ -1,0 +1,20 @@
+{
+  "name": "form-pages",
+  "version": "0.0.1-beta",
+  "description": "A plugin to make paginable forms",
+  "main": "index.js",
+  "author": "Júnior Garcia <itamarjr91@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "eslint-config-jquery": "^1.0.1",
+    "rollup": "^1.7.0",
+    "rollup-plugin-uglify": "^6.0.2"
+  },
+  "dependencies": {},
+  "scripts": {
+    "build": "rollup --config",
+    "build:production": "NODE_ENV='production' rollup --config"
+  }
+}

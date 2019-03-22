@@ -20,8 +20,12 @@
  */
 
  /**
-  * @typedef EventList
+  * @typedef {{NEXT_PAGE: string}, {PREV_PAGE: string}} EventList
   */
+
+  /**
+   * @typedef {{width: number, height: number}} Dimensions
+   */
 
 ( function( $, window, document, undefined ) {
 
@@ -135,6 +139,29 @@
    */
   FormPages.prototype.goToPrevPage = function() {
     return this.goTo( this.currentPage - 1 );
+  };
+
+  FormPages.prototype.getParentDimensions = function() {
+    return {
+      width: this.$element.outerWidth(),
+      height: this.$element.outerHeight()
+    };
+  };
+
+  /**
+   * Gets the dimensions of the page to help adjust possible animations.
+   * @param {number} pageNumber
+   * @returns {Dimensions}
+   */
+  FormPages.prototype.getPageDimensions = function( pageNumber ) {
+
+    /** @type {Dimensions} */
+    let result = {},
+      $pageEl = this.$element.find( this.options.formPageSelector ).eq( pageNumber );
+      result.width = $pageEl.outerWidth();
+      result.height = $pageEl.outerHeight();
+
+      return result;
   };
 
   /**

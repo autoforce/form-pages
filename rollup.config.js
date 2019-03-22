@@ -1,6 +1,14 @@
 import { uglify } from "rollup-plugin-uglify";
+import sass from "rollup-plugin-sass";
+import babel from 'rollup-plugin-babel';
 
-let config = {};
+let config = {},
+  plugins = [
+    babel(),
+    sass({
+      output: "form-pages.css"
+    })
+  ];
 
 switch (process.env.NODE_ENV) {
   case "development":
@@ -12,15 +20,15 @@ switch (process.env.NODE_ENV) {
       }
     };
     break;
-  default:
-    // Production
+  case "production":
+    plugins.push(uglify());
     config = {
       input: "./src/form-pages.js",
       output: {
         file: "./dist/form-pages.min.js",
         format: "iife"
       },
-      plugins: [uglify()]
+      plugins
     };
     break;
 }

@@ -7,14 +7,19 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
     "eslint": "^5.15.3",
     "eslint-config-jquery": "^1.0.1",
     "rollup": "^1.7.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-sass": "^1.1.0",
     "rollup-plugin-uglify": "^6.0.2"
   },
   "dependencies": {},
   "scripts": {
-    "build": "rollup --config",
-    "build:production": "NODE_ENV='production' rollup --config"
+    "build": "NODE_ENV=development rollup --config",
+    "build:production": "NODE_ENV=production rollup --config"
   }
 }

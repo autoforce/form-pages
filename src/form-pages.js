@@ -19,13 +19,13 @@
  * @property {string} _name
  */
 
- /**
-  * @typedef {{NEXT_PAGE: string}, {PREV_PAGE: string}} EventList
-  */
+/**
+ * @typedef {{NEXT_PAGE: string}, {PREV_PAGE: string}} EventList
+ */
 
-  /**
-   * @typedef {{width: number, height: number}} Dimensions
-   */
+/**
+ * @typedef {{width: number, height: number}} Dimensions
+ */
 
 ( function( $, window, document, undefined ) {
 
@@ -118,9 +118,11 @@
   FormPages.prototype.goTo = function( page ) {
 
     // Page must be bigger than zero and less than the total pages
-    if ( !( page  <= 0 || page > this.getTotalPages() ) ) {
+    if ( !( page <= 0 || page > this.getTotalPages() ) ) {
       this.currentPage = page;
     }
+
+    // TODO animate the form
 
     return this.currentPage;
   };
@@ -156,12 +158,12 @@
   FormPages.prototype.getPageDimensions = function( pageNumber ) {
 
     /** @type {Dimensions} */
-    let result = {},
+    var result = {},
       $pageEl = this.$element.find( this.options.formPageSelector ).eq( pageNumber );
-      result.width = $pageEl.outerWidth();
-      result.height = $pageEl.outerHeight();
+    result.width = $pageEl.outerWidth();
+    result.height = $pageEl.outerHeight();
 
-      return result;
+    return result;
   };
 
   /**

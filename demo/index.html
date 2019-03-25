@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Demo form</title>
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="../src/form-pages.js"></script>
+  <script src="../dist/form-pages.js"></script>
+  <link rel="stylesheet" href="../src/form-pages.css">
 </head>
 
 <body>
@@ -47,20 +47,19 @@
             <input type="tel" class="form-control" name="tel" />
           </div>
           <div class="form-group">
-            <input type="submit" class="btn btn-primary"
-              value="Submit my form!" />
+            <input type="submit" class="btn btn-primary" value="Submit my form!" />
           </div>
         </div>
       </form>
     </div>
   </div>
   <script>
-    $(function() {
+    $(function () {
       $('.pageable-form').formPages();
-      $('.pageable-form').on('next.fp.page', function(e, data) {
+      $('.pageable-form').on('next.fp.page', function (e, data) {
         console.log(data);
       });
-      $('.pageable-form').on('prev.fp.page', function(e, data) {
+      $('.pageable-form').on('prev.fp.page', function (e, data) {
         console.log(data);
       });
     });
@@ -73,4 +72,5 @@
     }
   </style>
 </body>
+
 </html>

@@ -1,13 +1,9 @@
 import { uglify } from "rollup-plugin-uglify";
-import sass from "rollup-plugin-sass";
-import babel from 'rollup-plugin-babel';
+import babel from "rollup-plugin-babel";
 
 let config = {},
   plugins = [
-    babel(),
-    sass({
-      output: "form-pages.css"
-    })
+    babel()
   ];
 
 switch (process.env.BUILD) {

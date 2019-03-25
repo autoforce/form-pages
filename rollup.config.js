@@ -10,7 +10,7 @@ let config = {},
     })
   ];
 
-switch (process.env.NODE_ENV) {
+switch (process.env.BUILD) {
   case "development":
     config = {
       input: "./src/form-pages.js",

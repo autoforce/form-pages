@@ -111,7 +111,7 @@
   };
 
   FormPages.prototype.on = function( eventName, cb ) {
-    this.$element.on( eventName, cb );
+    this.$element.on( eventName, null, { currentPage: this.currentPage }, cb );
   };
 
   FormPages.prototype.canMoveForward = function() {

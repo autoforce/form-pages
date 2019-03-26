@@ -1,4 +1,4 @@
-// import "./form-pages.scss";
+import "./form-pages.scss";
 
 /**
   * @typedef {('horizontal'|'vertical')} PaginationDirection

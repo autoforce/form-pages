@@ -2,20 +2,19 @@
   "name": "form-pages",
   "version": "0.0.1-beta",
   "description": "A plugin to make paginable forms",
-  "main": "index.js",
   "author": "Júnior Garcia <itamarjr91@gmail.com>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
+    "rollup": "^1.7.3",
+    "rollup-plugin-babel": "^4.3.2",
     "eslint": "^5.15.3",
     "eslint-config-jquery": "^1.0.1",
-    "rollup": "^1.7.0",
-    "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-uglify": "^6.0.2"
   },
+  "main": "src/form-pages.js",
   "dependencies": {},
   "scripts": {
     "build": "rollup --config --environment BUILD:development",

@@ -1,5 +1,7 @@
 import { uglify } from "rollup-plugin-uglify";
 import babel from "rollup-plugin-babel";
+import serve from "rollup-plugin-serve";
+import livereload from "rollup-plugin-livereload";
 
 let plugins = [
     babel({
@@ -16,10 +18,17 @@ let plugins = [
     plugins
   };
 
-// Default config object to development
-config = Object.assign({}, config, { plugins });
-
 switch (process.env.BUILD) {
+  case "development":
+    if (process.env.WATCH) {
+      plugins.push(serve({
+        contentBase: ['demo', 'dist', 'src']
+      }), livereload({
+        watch: ['demo', 'dist', 'src']
+      }));
+    }
+    config = Object.assign({}, config, { plugins });
+    break;
   case "production":
     plugins.push(uglify());
     config = Object.assign({}, config, {

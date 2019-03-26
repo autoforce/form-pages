@@ -1,12 +1,16 @@
+
+(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');
 (function () {
   'use strict';
+
+  // import "./form-pages.scss";
 
   /**
     * @typedef {('horizontal'|'vertical')} PaginationDirection
     */
 
   /**
-   * @typedef {('next'|'prev')} Direction
+   * @typedef {('next'|'prev'|'none')} Direction
    */
 
   /**
@@ -148,19 +152,9 @@
 
         self.$element.addClass(classes);
       }
-      /**
-       * Here we analyze what dimensions really matters and set them
-       */
-
-
-      function configurePagesDimensions() {
-
-        if (self.options.paginationDirection === PaginationDirection.VERTICAL) ;
-      }
 
       configureDefaultTriggers();
       configureContainerFormClasses();
-      configurePagesDimensions();
     };
     /**
      * @return {number}
@@ -183,17 +177,25 @@
       if (!(page <= 0 || page > this.getTotalPages())) {
         movingDirection = page > this.currentPage ? "next" : "prev";
         this.currentPage = page;
+      } else {
+        movingDirection = "none";
+      }
+
+      if (movingDirection === "none") {
+        return this.currentPage;
       } // Animating the pages
 
 
-      var $activePage = $pages.parent().find(this.options.activePageClass);
-      $activePage.removeClass(this.options.activePageClass); // Can be the previous page also. "next" in this case does not imply direction or position.
+      var $activePage = $formPagesContainer.find(this.options.activePageClass);
+      $activePage.removeClass(getOptionsSelectorAlphaChars("activePageClass")); // Can be the previous page also. "next" in this case does not imply direction or position.
 
-      var $nextPageToBeShown; // Verifyting the direction
+      var $nextPageToBeShown,
+          translationX = "".concat(this.getPageDimensions().width * (this.currentPage - 1)); // Verifyting the direction
 
       switch (movingDirection) {
         case "next":
           $nextPageToBeShown = $activePage.next();
+          translationX = "-".concat(translationX);
           break;
 
         case "prev":
@@ -202,6 +204,7 @@
       }
 
       $nextPageToBeShown.addClass(getOptionsSelectorAlphaChars("activePageClass"));
+      $formPagesContainer.css("transform", "translateX(".concat(translationX, "px)"));
       return this.currentPage;
     };
     /**
@@ -236,10 +239,12 @@
      */
 
 
-    FormPages.prototype.getPageDimensions = function (pageNumber) {
+    FormPages.prototype.getPageDimensions = function () {
+      var pageNumber = arguments.length > 0 && arguments[0] !== undefined$1 ? arguments[0] : 1;
+
       /** @type {Dimensions} */
       var result = {},
-          $pageEl = this.$element.find(this.options.formPageClass).eq(pageNumber);
+          $pageEl = this.$element.find(this.options.formPageClass).eq(pageNumber - 1);
       result.width = $pageEl.outerWidth();
       result.height = $pageEl.outerHeight();
       return result;

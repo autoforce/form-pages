@@ -16,6 +16,7 @@
       {
         "args": "none"
       }
-    ]
+    ],
+    "no-unused-expressions": ["off"]
   }
 }

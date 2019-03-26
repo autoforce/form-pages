@@ -112,6 +112,14 @@
       this.$element.on(eventName, cb);
     };
 
+    FormPages.prototype.canMoveForward = function () {
+      return this.currentPage + 1 <= this.getTotalPages();
+    };
+
+    FormPages.prototype.canMoveBackwards = function () {
+      return this.currentPage - 1 > 0;
+    };
+
     FormPages.prototype.init = function () {
       var self = this;
       $pages = this.$element.find(this.options.formPageClass); // Adding the form pages container class to the $formPagesContainer.
@@ -120,10 +128,10 @@
       // Removing the active classes from the pages as a way to prevent wrongly
       // presented pages, then we add the active page class to the first page.
 
-      $pages.removeClass(getOptionsSelectorAlphaChars("activePageClass")).first().addClass(getOptionsSelectorAlphaChars("activePageClass"));
+      $pages.removeClass(getOptionsSelectorAlphaChars("activePageClass")).first().addClass(getOptionsSelectorAlphaChars("activePageClass")); // Step 2: Move the pages to the container
+
       $pages.appendTo($formPagesContainer);
-      this.$element.append($formPagesContainer); // Step 2: Move the pages to the container
-      // Step 3: Configuring the default triggers.
+      this.$element.append($formPagesContainer); // Step 3: Configuring the default triggers.
 
       function configureDefaultTriggers() {
         self.on("click", function (e) {
@@ -131,12 +139,12 @@
 
           if ($target.is(self.options.prevButtonClass)) {
             e.preventDefault();
-            self.trigger(Events.PREV_PAGE, {
+            self.canMoveBackwards() && self.trigger(Events.PREV_PAGE, {
               currentPage: self.goToPrevPage()
             });
           } else if ($target.is(self.options.nextButtonClass)) {
             e.preventDefault();
-            self.trigger(Events.NEXT_PAGE, {
+            self.canMoveForward() && self.trigger(Events.NEXT_PAGE, {
               currentPage: self.goToNextPage()
             });
           }

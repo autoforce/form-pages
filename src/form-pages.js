@@ -114,6 +114,14 @@
     this.$element.on( eventName, cb );
   };
 
+  FormPages.prototype.canMoveForward = function() {
+    return this.currentPage + 1 <= this.getTotalPages();
+  };
+
+  FormPages.prototype.canMoveBackwards = function() {
+    return this.currentPage - 1 > 0;
+  };
+
   FormPages.prototype.init = function() {
     const self = this;
 
@@ -130,10 +138,9 @@
       .first()
       .addClass( getOptionsSelectorAlphaChars( "activePageClass" ) );
 
+    // Step 2: Move the pages to the container
     $pages.appendTo( $formPagesContainer );
     this.$element.append( $formPagesContainer );
-
-    // Step 2: Move the pages to the container
 
     // Step 3: Configuring the default triggers.
     function configureDefaultTriggers() {
@@ -143,10 +150,12 @@
         // We should prevent default when clicked on "next" or "prev" buttons to avoid sending the form
         if ( $target.is( self.options.prevButtonClass ) ) {
           e.preventDefault();
-          self.trigger( Events.PREV_PAGE, { currentPage: self.goToPrevPage() } );
+          self.canMoveBackwards() && self.trigger( Events.PREV_PAGE,
+            { currentPage: self.goToPrevPage() } );
         } else if ( $target.is( self.options.nextButtonClass ) ) {
           e.preventDefault();
-          self.trigger( Events.NEXT_PAGE, { currentPage: self.goToNextPage() } );
+          self.canMoveForward() && self.trigger( Events.NEXT_PAGE,
+            { currentPage: self.goToNextPage() } );
         }
       } );
     }

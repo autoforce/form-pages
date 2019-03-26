@@ -5,7 +5,7 @@
   */
 
 /**
- * @typedef {('next'|'prev')} Direction
+ * @typedef {('next'|'prev'|'none')} Direction
  */
 
 /**
@@ -183,6 +183,12 @@
     if ( !( page <= 0 || page > this.getTotalPages() ) ) {
       movingDirection = page > this.currentPage ? "next" : "prev";
       this.currentPage = page;
+    } else {
+      movingDirection = "none";
+    }
+
+    if ( movingDirection === "none" ) {
+      return this.currentPage;
     }
 
     // Animating the pages

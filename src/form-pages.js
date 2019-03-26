@@ -1,3 +1,5 @@
+// import "./form-pages.scss";
+
 /**
   * @typedef {('horizontal'|'vertical')} PaginationDirection
   */
@@ -113,7 +115,7 @@
   };
 
   FormPages.prototype.init = function() {
-    var self = this;
+    const self = this;
 
     $pages = this.$element.find( this.options.formPageClass );
 
@@ -157,20 +159,8 @@
       self.$element.addClass( classes );
     }
 
-    /**
-     * Here we analyze what dimensions really matters and set them
-     */
-    function configurePagesDimensions() {
-      let dimensionToChange = "width";
-
-      if ( self.options.paginationDirection === PaginationDirection.VERTICAL ) {
-        dimensionToChange = "height";
-      }
-    }
-
     configureDefaultTriggers();
     configureContainerFormClasses();
-    configurePagesDimensions();
   };
 
   /**
@@ -196,21 +186,22 @@
     }
 
     // Animating the pages
-    const $activePage = $pages
-      .parent()
-      .find( this.options.activePageClass );
+    const $activePage = $formPagesContainer.find( this.options.activePageClass );
 
     $activePage
-      .removeClass( this.options.activePageClass );
+      .removeClass( getOptionsSelectorAlphaChars( "activePageClass" ) );
 
     // Can be the previous page also. "next" in this case does not imply direction or position.
-    let $nextPageToBeShown;
+    let $nextPageToBeShown,
+      translationX =
+        `${this.getPageDimensions().width * ( this.currentPage - 1 )}`;
 
     // Verifyting the direction
     switch ( movingDirection ) {
       case "next":
         $nextPageToBeShown = $activePage
           .next();
+        translationX = `-${translationX}`;
         break;
       case "prev":
         $nextPageToBeShown = $activePage
@@ -218,7 +209,10 @@
         break;
     }
 
-    $nextPageToBeShown.addClass( getOptionsSelectorAlphaChars( "activePageClass" ) );
+    $nextPageToBeShown.addClass(
+      getOptionsSelectorAlphaChars( "activePageClass" ) );
+    $formPagesContainer.css( "transform",
+      `translateX(${translationX}px)` );
 
     return this.currentPage;
   };
@@ -251,11 +245,11 @@
    * @param {number} pageNumber
    * @returns {Dimensions}
    */
-  FormPages.prototype.getPageDimensions = function( pageNumber ) {
+  FormPages.prototype.getPageDimensions = function( pageNumber = 1 ) {
 
     /** @type {Dimensions} */
-    var result = {},
-      $pageEl = this.$element.find( this.options.formPageClass ).eq( pageNumber );
+    let result = {},
+      $pageEl = this.$element.find( this.options.formPageClass ).eq( pageNumber - 1 );
     result.width = $pageEl.outerWidth();
     result.height = $pageEl.outerHeight();
 

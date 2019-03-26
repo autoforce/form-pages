@@ -104,8 +104,10 @@
       this.init();
     }
 
-    FormPages.prototype.trigger = function (triggerName, params) {
-      this.$element.trigger(triggerName, params);
+    FormPages.prototype.trigger = function (eventName, params) {
+      this.$element.trigger(eventName, $.extend({}, params, {
+        currentPage: this.currentPage
+      }));
     };
 
     FormPages.prototype.on = function (eventName, cb) {
@@ -134,19 +136,26 @@
       this.$element.append($formPagesContainer); // Step 3: Configuring the default triggers.
 
       function configureDefaultTriggers() {
+        // We always move on next or prev events.
+        self.on(Events.PREV_PAGE, function () {
+          self.goToPrevPage();
+        });
+        self.on(Events.NEXT_PAGE, function () {
+          self.goToNextPage();
+        });
         self.on("click", function (e) {
-          var $target = $(e.target); // We should prevent default when clicked on "next" or "prev" buttons to avoid sending the form
+          var $target = $(e.target); // We should prevent default when clicked on "next" or "prev" buttons.
+          // to avoid sending the form.
+          // We manually check if the form can move forwards or backwards so
+          // that we avoid triggering the event when the movement is out of
+          // boundaries.
 
           if ($target.is(self.options.prevButtonClass)) {
             e.preventDefault();
-            self.canMoveBackwards() && self.trigger(Events.PREV_PAGE, {
-              currentPage: self.goToPrevPage()
-            });
+            self.canMoveBackwards() && self.trigger(Events.PREV_PAGE);
           } else if ($target.is(self.options.nextButtonClass)) {
             e.preventDefault();
-            self.canMoveForward() && self.trigger(Events.NEXT_PAGE, {
-              currentPage: self.goToNextPage()
-            });
+            self.canMoveForward() && self.trigger(Events.NEXT_PAGE);
           }
         });
       }

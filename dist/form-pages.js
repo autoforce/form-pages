@@ -66,7 +66,8 @@
         PaginationDirection = {
       HORIZONTAL: "horizontal",
       VERTICAL: "vertical"
-    };
+    },
+        CALLBACKS = ["onNextPage", "onPrevPage"];
     /**
      * Gets the alphanumeric part of an option selector. Also memoizes the
      * arguments execute faster in other calls.
@@ -111,7 +112,9 @@
     };
 
     FormPages.prototype.on = function (eventName, cb) {
-      this.$element.on(eventName, cb);
+      this.$element.on(eventName, null, {
+        currentPage: this.currentPage
+      }, cb);
     };
 
     FormPages.prototype.canMoveForward = function () {
@@ -136,11 +139,26 @@
       this.$element.append($formPagesContainer); // Step 3: Configuring the default triggers.
 
       function configureDefaultTriggers() {
-        // We always move on next or prev events.
-        self.on(Events.PREV_PAGE, function () {
+        // Proxying the configured event callbacks
+        $.each(CALLBACKS, function (index, callbackKey) {
+          var callback = self.options[callbackKey];
+
+          if (!callback) {
+            return;
+          }
+
+          self.options[callbackKey] = callback.bind(null, {
+            currentPage: self.currentPage
+          });
+        }); // Adding the default configured callbacks to the events
+
+        self.on(Events.PREV_PAGE, self.options.onPrevPage);
+        self.on(Events.NEXT_PAGE, self.options.onNextPage); // If valid, we always move on next or prev events.
+
+        self.on(Events.PREV_PAGE, function (e) {
           self.goToPrevPage();
         });
-        self.on(Events.NEXT_PAGE, function () {
+        self.on(Events.NEXT_PAGE, function (e) {
           self.goToNextPage();
         });
         self.on("click", function (e) {
@@ -182,7 +200,8 @@
       return this.$element.find(this.options.formPageClass).length;
     };
     /**
-     * Tries to move the form to a specific page
+     * Tries to move the form to a specific page.
+     * This also validates if the move is allowed (not out of bounds).
      * @return {number}
      */
 
@@ -204,7 +223,8 @@
 
 
       var $activePage = $formPagesContainer.find(this.options.activePageClass);
-      $activePage.removeClass(getOptionsSelectorAlphaChars("activePageClass")); // Can be the previous page also. "next" in this case does not imply direction or position.
+      $activePage.removeClass(getOptionsSelectorAlphaChars("activePageClass")); // Can be the previous page also. "next" in this case does not imply
+      // direction or position.
 
       var $nextPageToBeShown,
           translationX = "".concat(this.getPageDimensions().width * (this.currentPage - 1)); // Verifyting the direction

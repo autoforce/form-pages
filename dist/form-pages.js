@@ -1,29 +1,8 @@
-
-(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');
 (function () {
     'use strict';
 
-    
-
-    function ___$insertStyle(css) {
-      if (!css) {
-        return;
-      }
-      if (typeof window === 'undefined') {
-        return;
-      }
-
-      var style = document.createElement('style');
-
-      style.setAttribute('type', 'text/css');
-      style.innerHTML = css;
-      document.head.appendChild(style);
-      return css;
-    }
-
     /**
-     * @module
-     * @description Utils
+     * @module Utils
      */
 
     /**
@@ -64,8 +43,8 @@
      * @property {string} formPagesContainerClass=".form-pages__page-container" The selector for the pages container which holds all the pages.
      * @property {string} submitButtonClass=".form-pages__submit-button" The selector for the form submit button.
      * @property {PaginationDirection} paginationDirection="horizontal" The direction that the form will move.
-     * @property {function?} onNextPage Callback to be trigerred when the form goes to the next page.
-     * @property {function?} onPrevPage Callback to be trigerred when the form goes to the previous page.
+     * @property {function?} onNextPage Callback to be triggered when the form goes to the next page.
+     * @property {function?} onPrevPage Callback to be triggered when the form goes to the previous page.
      */
 
     /**
@@ -78,19 +57,6 @@
      * @property {number} height
      */
 
-    /** @type {FormPagesOptions} */
-
-    var defaults = {
-      formPageClass: ".form-pages__page",
-      nextButtonClass: ".form-pages__next-button",
-      prevButtonClass: ".form-pages__prev-button",
-      submitButtonClass: ".form-pages__submit-button",
-      paginationDirection: "horizontal",
-      activePageClass: ".form-pages__page--active",
-      formPagesContainerClass: ".form-pages__page-container"
-    },
-        $formPagesContainer = $("<div></div>"),
-        $pages;
     var PLUGIN_NAME = "formPages",
         EVENT_NAMESPACE_PREFIX = "fp",
 
@@ -104,6 +70,19 @@
       VERTICAL: "vertical"
     },
         CALLBACKS = ["onNextPage", "onPrevPage"];
+    /** @type {FormPagesOptions} */
+
+    var defaults = {
+      formPageClass: ".form-pages__page",
+      nextButtonClass: ".form-pages__next-button",
+      prevButtonClass: ".form-pages__prev-button",
+      submitButtonClass: ".form-pages__submit-button",
+      paginationDirection: PaginationDirection.HORIZONTAL,
+      activePageClass: ".form-pages__page--active",
+      formPagesContainerClass: ".form-pages__page-container"
+    },
+        $formPagesContainer = $("<div></div>"),
+        $pages;
     /**
      * @class
      * @description Creates the FormPages component.
@@ -125,7 +104,7 @@
       this.init();
     }
     /**
-     * Makes a proxy and calls events to the main $element object, passing the
+     * Makes a proxy and calls events to the main `$element` object, passing the
      * current page as event data.
      * @param {string} eventName
      * @param {object} params Params passed to the jQuery trigger function to be attached as event data.
@@ -141,6 +120,7 @@
      * Configures events to the plugin
      * @param {string} eventName
      * @param {function} cb Event callback
+     * See {@tutorial event-handling}
      */
 
 

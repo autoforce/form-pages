@@ -105,6 +105,7 @@ FormPages.prototype.trigger = function( eventName, params ) {
  * Configures events to the plugin
  * @param {string} eventName
  * @param {function} cb Event callback
+ * See {@tutorial event-handling}
  */
 FormPages.prototype.on = function( eventName, cb ) {
   this.$element.on( eventName, null, { currentPage: this.currentPage }, cb );

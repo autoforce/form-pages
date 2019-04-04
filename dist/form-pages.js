@@ -22,14 +22,19 @@
     }
 
     /**
-     * Gets the alphanumeric part of an option selector. Also memoizes the
-     * arguments execute faster in other calls.
-     * @example
-     * // returns "form-pages__page"
-     * getOptionsSelectorAlphaChars('formPageClass')
-     * @param {string} key
-     * @return {string}
+     * Utils
      */
+
+    /**
+    * Gets the alphanumeric part of an option selector. Also memoizes the
+    * arguments execute faster in other calls.
+    * @example
+    * // returns "form-pages__page"
+    * getOptionsSelectorAlphaChars('formPageClass')
+    * @param {string} key
+    * @return {string}
+    */
+
     var getOptionsSelectorAlphaChars = function () {
       var memo = {};
       return function (key) {
@@ -37,10 +42,13 @@
         return memo[key];
       };
     }();
+    /**
+     * Plugin
+     */
 
     /**
-     * @typedef {('horizontal'|'vertical')} PaginationDirection
-     */
+    * @typedef {('horizontal'|'vertical')} PaginationDirection
+    */
 
     /**
      * @typedef {('next'|'prev'|'none')} Direction
@@ -70,6 +78,7 @@
      */
 
     /** @type {FormPagesOptions} */
+
 
     var defaults = {
       formPageClass: ".form-pages__page",

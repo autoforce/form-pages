@@ -1,9 +1,21 @@
 {
     "opts": {
-        "template": "./node_modules/minami"
+        "template": "./node_modules/@pixi/jsdoc-template",
+        "destination": "./docs"
     },
     "plugins": [
         "plugins/markdown"
     ],
-    "sourceType": "module"
+    "sourceType": "module",
+    "templates": {
+        "applicationName": "FormPages",
+        "linenums": true,
+        "source": {
+            "include": [
+                "./src/"
+            ],
+            "includePattern": ".+\\.js(doc)?$",
+            "excludePattern": "(^|\\/|\\\\)_"
+        }
+    }
 }

@@ -1,8 +1,8 @@
 import "./form-pages.scss";
 
 /**
-  * @typedef {('horizontal'|'vertical')} PaginationDirection
-  */
+ * @typedef {('horizontal'|'vertical')} PaginationDirection
+ */
 
 /**
  * @typedef {('next'|'prev'|'none')} Direction
@@ -10,24 +10,15 @@ import "./form-pages.scss";
 
 /**
  * @typedef {Object} FormPagesOptions
- * @property {string} formPageClass The selector which will separate the form pages
- * @property {string} activePageClass The active page selector
- * @property {string} nextButtonClass The selector for the "next" button
- * @property {string} prevButtonClass The selector for the "previous" button
- * @property {string} formPagesContainerClass The selector for the pages container which holds all the pages
- * @property {string} submitButtonClass The selector for the form submit button
- * @property {PaginationDirection} paginationDirection The direction that the form will move
- * @property {function} onNextPage Callback trigerred when the next page button is pressed
- * @property {function} onPrevPage Callback trigerred when the previous page button is pressed
- */
-
-/**
- * @typedef FormPages
- * @property {jQuery} $element
- * @property {FormPagesOptions} options
- * @property {number} totalPages
- * @property {FormPagesOptions} _defaults
- * @property {string} _name
+ * @property {string} formPageClass=".form-pages__page" The selector which will separate the form pages.
+ * @property {string} activePageClass=".form-pages__page--active" The active page selector.
+ * @property {string} nextButtonClass=".form-pages__next-button" The selector for the "next" button.
+ * @property {string} prevButtonClass=".form-pages__prev-button" The selector for the "previous" button.
+ * @property {string} formPagesContainerClass=".form-pages__page-container" The selector for the pages container which holds all the pages.
+ * @property {string} submitButtonClass=".form-pages__submit-button" The selector for the form submit button.
+ * @property {PaginationDirection} paginationDirection="horizontal" The direction that the form will move.
+ * @property {function?} onNextPage Callback to be trigerred when the form goes to the next page.
+ * @property {function?} onPrevPage Callback to be trigerred when the form goes to the previous page.
  */
 
 /**
@@ -35,8 +26,52 @@ import "./form-pages.scss";
  */
 
 /**
- * @typedef {{width: number, height: number}} Dimensions
+ * @typedef Dimensions
+ * @property {number} width
+ * @property {number} height
  */
+
+/**
+ * @class
+ * @description Creates the FormPages component.
+ * @property {jQuery} $element The form which the plugin is constructed upon.
+ * @property {FormPagesOptions} options
+ * @property {number} totalPages The total os pages found in the container object.
+ * @param {jQuery!} element The main form element.
+ * @param {FormPagesOptions?} options
+ */
+function FormPages(element, options) {
+  this.$element = $(element);
+  this.options = $.extend({}, defaults, options);
+
+  // Control variables
+  this.currentPage = 1;
+
+  this._defaults = defaults;
+  this._name = PLUGIN_NAME;
+
+  getOptionsSelectorAlphaChars = getOptionsSelectorAlphaChars.bind(this);
+
+  this.init();
+}
+
+/**
+ * Gets the alphanumeric part of an option selector. Also memoizes the
+ * arguments execute faster in other calls.
+ * @example
+ * // returns "form-pages__page"
+ * getOptionsSelectorAlphaChars('formPageClass')
+ * @param {string} key
+ * @return {string}
+ */
+let getOptionsSelectorAlphaChars = (function () {
+  let memo = {};
+
+  return function (key) {
+    memo[key] = memo[key] || this.options[key].replace(/^(.|#)/gm, "");
+    return memo[key];
+  };
+})();
 
 (function ($, window, document, undefined) {
 
@@ -71,61 +106,44 @@ import "./form-pages.scss";
     ];
 
   /**
-   * Gets the alphanumeric part of an option selector. Also memoizes the
-   * arguments execute faster in other calls.
-   * @example
-   * // returns form-pages__page
-   * getOptionsSelectorAlphaChars('formPageClass')
-   * @param {string} key
-   * @return {string}
+   * Makes a proxy and calls events to the main $element object, passing the
+   * current page as event data.
+   * @param {string} eventName
+   * @param {object} params Params passed to the jQuery trigger function to be attached as event data.
    */
-  let getOptionsSelectorAlphaChars = (function () {
-    let memo = {};
-
-    return function (key) {
-      memo[key] = memo[key] || this.options[key].replace(/^(.|#)/gm, "");
-      return memo[key];
-    };
-  })();
-
-  /**
-   * Creates the FormPages component
-   * @class
-   * @param {jQuery} element The main form element
-   * @param {FormPagesOptions} options
-   * @extends FormPages
-   */
-  function FormPages(element, options) {
-    this.$element = $(element);
-    this.options = $.extend({}, defaults, options);
-
-    // Control variables
-    this.currentPage = 1;
-
-    this._defaults = defaults;
-    this._name = PLUGIN_NAME;
-
-    getOptionsSelectorAlphaChars = getOptionsSelectorAlphaChars.bind(this);
-
-    this.init();
-  }
-
   FormPages.prototype.trigger = function (eventName, params) {
     this.$element.trigger(eventName, $.extend({}, params, { currentPage: this.currentPage }));
   };
 
+  /**
+   * Configures events to the plugin
+   * @param {string} eventName
+   * @param {function} cb Event callback
+   */
   FormPages.prototype.on = function (eventName, cb) {
     this.$element.on(eventName, null, { currentPage: this.currentPage }, cb);
   };
 
-  FormPages.prototype.canMoveForward = function () {
+  /**
+   * Checks if the pages can move forwards.
+   * @return {boolean}
+   */
+  FormPages.prototype.canMoveForwards = function () {
     return this.currentPage + 1 <= this.getTotalPages();
   };
 
+  /**
+   * Checks if the pages can move backwards.
+   * @return {boolean}
+   */
   FormPages.prototype.canMoveBackwards = function () {
     return this.currentPage - 1 > 0;
   };
 
+  /**
+   * Initializes the plugin.
+   * @private
+   */
   FormPages.prototype.init = function () {
     const self = this;
 
@@ -163,7 +181,7 @@ import "./form-pages.scss";
       self.on(Events.PREV_PAGE, self.options.onPrevPage);
       self.on(Events.NEXT_PAGE, self.options.onNextPage);
 
-      // If valid, we always move on next or prev events.
+      // If valid, we always move on next or previous events.
       self.on(Events.PREV_PAGE, function (e) {
         self.goToPrevPage();
       });
@@ -185,7 +203,7 @@ import "./form-pages.scss";
           self.canMoveBackwards() && self.trigger(Events.PREV_PAGE);
         } else if ($target.is(self.options.nextButtonClass)) {
           e.preventDefault();
-          self.canMoveForward() && self.trigger(Events.NEXT_PAGE);
+          self.canMoveForwards() && self.trigger(Events.NEXT_PAGE);
         }
       });
     }
@@ -203,6 +221,8 @@ import "./form-pages.scss";
   };
 
   /**
+   * Checks the amount of the elements that matches to the
+   * `this.options.formPageClass` option value.
    * @return {number}
    */
   FormPages.prototype.getTotalPages = function () {
@@ -212,6 +232,8 @@ import "./form-pages.scss";
   /**
    * Tries to move the form to a specific page.
    * This also validates if the move is allowed (not out of bounds).
+   * In case the component can't move to the desired page, it returns the
+   * current page.
    * @return {number}
    */
   FormPages.prototype.goTo = function (page) {
@@ -265,21 +287,25 @@ import "./form-pages.scss";
   };
 
   /**
-   * Tries to move the form to the next page and returns the current page
-   * @return {number}
+   * Tries to move the form to the next page and returns the current page.
+   * @return {number} The page the component moved to.
    */
   FormPages.prototype.goToNextPage = function () {
     return this.goTo(this.currentPage + 1);
   };
 
   /**
-   * Tries to move the form to the prev page and returns the current page
-   * @return {number}
+   * Tries to move the form to the previous page and returns the current page.
+   * @return {number} The page the component moved to.
    */
   FormPages.prototype.goToPrevPage = function () {
     return this.goTo(this.currentPage - 1);
   };
 
+  /**
+   * Gets the pages' parent's dimensions.
+   * @return {Dimensions}
+   */
   FormPages.prototype.getParentDimensions = function () {
     return {
       width: this.$element.outerWidth(),

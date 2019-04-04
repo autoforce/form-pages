@@ -4,7 +4,8 @@
     "browser": true
   },
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 6,
+    "sourceType": "module"
   },
   "globals": {
     "jQuery": true,
@@ -17,6 +18,8 @@
         "args": "none"
       }
     ],
-    "no-unused-expressions": ["off"]
+    "no-unused-expressions": [
+      "off"
+    ]
   }
 }

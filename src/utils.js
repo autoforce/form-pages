@@ -1,6 +1,5 @@
 /**
- * @module
- * @description Utils
+ * @module Utils
  */
 
 /**

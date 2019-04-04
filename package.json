@@ -27,6 +27,6 @@
     "build": "rollup --config --environment BUILD:development",
     "build:production": "rollup --config --environment BUILD:production",
     "watch": "rollup --config --watch --environment BUILD:development,WATCH",
-    "generate:doc": "jsdoc ./src/form-pages.js --configure .jsdoc.json"
+    "generate:doc": "jsdoc ./src/form-pages.js ./src/utils.js --configure .jsdoc.json"
   }
 }

@@ -22,7 +22,8 @@
     }
 
     /**
-     * Utils
+     * @module
+     * @description Utils
      */
 
     /**
@@ -34,7 +35,6 @@
     * @param {string} key
     * @return {string}
     */
-
     var getOptionsSelectorAlphaChars = function () {
       var memo = {};
       return function (key) {
@@ -42,6 +42,7 @@
         return memo[key];
       };
     }();
+
     /**
      * Plugin
      */
@@ -78,7 +79,6 @@
      */
 
     /** @type {FormPagesOptions} */
-
 
     var defaults = {
       formPageClass: ".form-pages__page",
@@ -298,6 +298,7 @@
     };
     /**
      * Tries to move the form to the next page and returns the current page.
+     * This triggers `next.fp.page` event it's a valid movement.
      * @return {number} The page the component moved to.
      */
 
@@ -307,6 +308,7 @@
     };
     /**
      * Tries to move the form to the previous page and returns the current page.
+     * @description This triggers `prev.fp.page` event it's a valid movement.
      * @return {number} The page the component moved to.
      */
 

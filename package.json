@@ -12,6 +12,7 @@
     "eslint": "^5.15.3",
     "eslint-config-jquery": "^1.0.1",
     "jsdoc": "3.5.5",
+    "minami": "^1.2.3",
     "postcss": "^7.0.14",
     "rollup": "^1.7.3",
     "rollup-plugin-babel": "^4.3.2",
@@ -26,6 +27,6 @@
     "build": "rollup --config --environment BUILD:development",
     "build:production": "rollup --config --environment BUILD:production",
     "watch": "rollup --config --watch --environment BUILD:development,WATCH",
-    "generate:doc": "jsdoc ./src/form-pages.js"
+    "generate:doc": "jsdoc ./src/form-pages.js --configure .jsdoc.json"
   }
 }

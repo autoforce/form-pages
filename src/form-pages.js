@@ -22,8 +22,8 @@ import { getOptionsSelectorAlphaChars } from "./utils.js";
  * @property {string} formPagesContainerClass=".form-pages__page-container" The selector for the pages container which holds all the pages.
  * @property {string} submitButtonClass=".form-pages__submit-button" The selector for the form submit button.
  * @property {PaginationDirection} paginationDirection="horizontal" The direction that the form will move.
- * @property {function?} onNextPage Callback to be trigerred when the form goes to the next page.
- * @property {function?} onPrevPage Callback to be trigerred when the form goes to the previous page.
+ * @property {function?} onNextPage Callback to be triggered when the form goes to the next page.
+ * @property {function?} onPrevPage Callback to be triggered when the form goes to the previous page.
  */
 
 /**
@@ -35,19 +35,6 @@ import { getOptionsSelectorAlphaChars } from "./utils.js";
  * @property {number} width
  * @property {number} height
  */
-
-/** @type {FormPagesOptions} */
-let defaults = {
-  formPageClass: ".form-pages__page",
-  nextButtonClass: ".form-pages__next-button",
-  prevButtonClass: ".form-pages__prev-button",
-  submitButtonClass: ".form-pages__submit-button",
-  paginationDirection: "horizontal",
-  activePageClass: ".form-pages__page--active",
-  formPagesContainerClass: ".form-pages__page-container"
-},
-  $formPagesContainer = $( "<div></div>" ),
-  $pages;
 
 const PLUGIN_NAME = "formPages",
   EVENT_NAMESPACE_PREFIX = "fp",
@@ -65,6 +52,20 @@ const PLUGIN_NAME = "formPages",
     "onNextPage",
     "onPrevPage"
   ];
+
+
+/** @type {FormPagesOptions} */
+let defaults = {
+  formPageClass: ".form-pages__page",
+  nextButtonClass: ".form-pages__next-button",
+  prevButtonClass: ".form-pages__prev-button",
+  submitButtonClass: ".form-pages__submit-button",
+  paginationDirection: PaginationDirection.HORIZONTAL,
+  activePageClass: ".form-pages__page--active",
+  formPagesContainerClass: ".form-pages__page-container"
+},
+  $formPagesContainer = $( "<div></div>" ),
+  $pages;
 
 /**
  * @class

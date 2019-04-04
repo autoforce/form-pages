@@ -1,7 +1,8 @@
 {
     "opts": {
-        "template": "./node_modules/@pixi/jsdoc-template",
-        "destination": "./docs"
+        "template": "./node_modules/foodoc/template",
+        "destination": "./docs",
+        "tutorials": "./tutorials"
     },
     "plugins": [
         "plugins/markdown"

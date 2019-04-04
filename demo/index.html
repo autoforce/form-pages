@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="/form-pages.js"></script>
+  <link rel="stylesheet" href="/form-pages.css">
 </head>
 
 <body>
@@ -69,10 +70,10 @@
   <script>
     $(function () {
       $('.pageable-form').formPages({
-        onNextPage: function(e) {
+        onNextPage: function (e) {
           console.log("onNextPage", e);
         },
-        onPrevPage: function(e) {
+        onPrevPage: function (e) {
           console.log("onPrevPage", e);
         }
       });
@@ -90,12 +91,13 @@
       padding: 10px;
       border-radius: 5px;
     }
+
     .form-pages__page {
       display: flex;
       flex-direction: column;
     }
 
-    .form-pages__page > .form-group:last-child {
+    .form-pages__page>.form-group:last-child {
       margin-top: auto;
     }
   </style>

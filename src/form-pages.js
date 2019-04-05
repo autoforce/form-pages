@@ -65,7 +65,9 @@ let defaults = {
   submitButtonClass: ".form-pages__submit-button",
   paginationDirection: PaginationDirection.HORIZONTAL,
   activePageClass: ".form-pages__page--active",
-  formPagesContainerClass: ".form-pages__page-container"
+  formPagesContainerClass: ".form-pages__page-container",
+  onNextPage() { },
+  onPrevPage() { }
 },
   $formPagesContainer = $( "<div></div>" ),
   $pages;

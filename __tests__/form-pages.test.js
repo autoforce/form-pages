@@ -6,12 +6,7 @@ const Nightmare = require("nightmare"),
 let nightmare;
 
 beforeEach(() => {
-    nightmare = Nightmare({
-        openDevTools: {
-            mode: 'attach'
-        },
-        show: true
-    });
+    nightmare = Nightmare();
 })
 
 it("it initializes the component", async () => {

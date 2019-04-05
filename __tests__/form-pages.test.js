@@ -1,10 +1,9 @@
-import { fixture, libResource } from './utils';
+import { fixture, libResource } from "./utils";
 const puppeteer = require("puppeteer"),
-    path = require('path'),
-    basicFilePath = `file://${fixture('basic.html')}`,
-    baseLibFile = libResource('form-pages.js'),
-    baseLibStyle = libResource('form-pages.css'),
-    pageableFormSelector = '.pageable-form';
+    basicFilePath = `file://${fixture("basic.html")}`,
+    baseLibFile = libResource("form-pages.js"),
+    baseLibStyle = libResource("form-pages.css"),
+    pageableFormSelector = ".pageable-form";
 
 let browser, page;
 
@@ -14,19 +13,19 @@ beforeEach(async () => {
     await page.goto(basicFilePath);
     await page.addScriptTag({ url: baseLibFile });
     await page.addStyleTag({ url: baseLibStyle });
-})
+});
 
 afterEach(async () => {
     await browser.close();
 });
 
-describe('Component initialization', () => {
+describe("Component initialization", () => {
     it("it initializes the component", async () => {
         expect.assertions(1);
         const initializedPlugin = await page.evaluate(selector => {
             const $el = $(selector);
             $el.formPages();
-            return $el.data('plugin_formPages') !== undefined;
+            return $el.data("plugin_formPages") !== undefined;
         }, pageableFormSelector);
 
         expect(initializedPlugin).toBe(true);
@@ -44,8 +43,8 @@ describe("Callbacks calls", () => {
                     callbackCalled = true;
                 }
             });
-            $el.find('.form-pages__next-button').first().trigger('click');
-            $el.find('.form-pages__prev-button').first().trigger('click');
+            $el.find(".form-pages__next-button").first().trigger("click");
+            $el.find(".form-pages__prev-button").first().trigger("click");
             return callbackCalled;
         }, pageableFormSelector);
 
@@ -62,7 +61,7 @@ describe("Callbacks calls", () => {
                     callbackCalled = true;
                 }
             });
-            $el.find('.form-pages__next-button').first().trigger('click');
+            $el.find(".form-pages__next-button").first().trigger("click");
             return callbackCalled;
         }, pageableFormSelector);
 

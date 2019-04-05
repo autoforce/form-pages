@@ -11,6 +11,11 @@
     "templates": {
         "applicationName": "FormPages",
         "linenums": true,
+        "systemName": "FormPages",
+        "systemSummary": "A way to paginate your forms",
+        "copyright": "",
+        "footer": "Made with ♥ by <a target='blank' href='https://autoforce.com/?utm_source=github&utm_medium=footer&utm_campaign=repo-formpages&utm_content=docs'>AutoForce</a>",
+        "collapseSymbols": false,
         "source": {
             "include": [
                 "./src/"

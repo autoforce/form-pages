@@ -40,14 +40,12 @@ window.lunrData = {
     "documentStore": {
       "store": {
         "index.html": [
-          "base",
-          "bootstrap",
-          "foodoc",
-          "handlebar",
+          "form",
+          "formpag",
           "index",
-          "jsdoc3",
+          "pagin",
           "readm",
-          "templat"
+          "way"
         ],
         "global.html": [
           "document",
@@ -227,135 +225,18 @@ window.lunrData = {
     "tokenStore": {
       "root": {
         "docs": {},
-        "b": {
-          "docs": {},
-          "a": {
-            "docs": {},
-            "s": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "index.html": {
-                    "ref": "index.html",
-                    "tf": 14
-                  }
-                }
-              }
-            },
-            "c": {
-              "docs": {},
-              "k": {
-                "docs": {},
-                "w": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "r": {
-                      "docs": {},
-                      "d": {
-                        "docs": {
-                          "FormPages.html#canMoveBackwards": {
-                            "ref": "FormPages.html#canMoveBackwards",
-                            "tf": 12.5
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "o": {
-            "docs": {},
-            "o": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "s": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "r": {
-                      "docs": {},
-                      "a": {
-                        "docs": {},
-                        "p": {
-                          "docs": {
-                            "index.html": {
-                              "ref": "index.html",
-                              "tf": 14
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "l": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "n": {
-                      "docs": {
-                        "FormPages.html#canMoveForwards": {
-                          "ref": "FormPages.html#canMoveForwards",
-                          "tf": 50
-                        },
-                        "FormPages.html#canMoveBackwards": {
-                          "ref": "FormPages.html#canMoveBackwards",
-                          "tf": 50
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "u": {
-              "docs": {},
-              "n": {
-                "docs": {},
-                "d": {
-                  "docs": {
-                    "FormPages.html#goTo": {
-                      "ref": "FormPages.html#goTo",
-                      "tf": 2.631578947368421
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "f": {
           "docs": {},
           "o": {
             "docs": {},
-            "o": {
-              "docs": {},
-              "d": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "c": {
-                    "docs": {
-                      "index.html": {
-                        "ref": "index.html",
-                        "tf": 600
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "r": {
               "docs": {},
               "m": {
                 "docs": {
+                  "index.html": {
+                    "ref": "index.html",
+                    "tf": 23.333333333333332
+                  },
                   "FormPages.html#goTo": {
                     "ref": "FormPages.html#goTo",
                     "tf": 2.631578947368421
@@ -371,6 +252,10 @@ window.lunrData = {
                     "docs": {},
                     "g": {
                       "docs": {
+                        "index.html": {
+                          "ref": "index.html",
+                          "tf": 600
+                        },
                         "FormPages.html": {
                           "ref": "FormPages.html",
                           "tf": 1916.6666666666667
@@ -752,56 +637,6 @@ window.lunrData = {
             }
           }
         },
-        "h": {
-          "docs": {},
-          "a": {
-            "docs": {},
-            "n": {
-              "docs": {},
-              "d": {
-                "docs": {},
-                "l": {
-                  "docs": {
-                    "undefined": {
-                      "tf": 950
-                    }
-                  },
-                  "e": {
-                    "docs": {},
-                    "b": {
-                      "docs": {},
-                      "a": {
-                        "docs": {},
-                        "r": {
-                          "docs": {
-                            "index.html": {
-                              "ref": "index.html",
-                              "tf": 14
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "e": {
-            "docs": {},
-            "l": {
-              "docs": {},
-              "p": {
-                "docs": {
-                  "FormPages.html#getPageDimensions": {
-                    "ref": "FormPages.html#getPageDimensions",
-                    "tf": 7.142857142857142
-                  }
-                }
-              }
-            }
-          }
-        },
         "i": {
           "docs": {},
           "n": {
@@ -837,24 +672,204 @@ window.lunrData = {
             }
           }
         },
-        "j": {
+        "p": {
           "docs": {},
-          "s": {
+          "a": {
             "docs": {},
-            "d": {
+            "g": {
               "docs": {},
-              "o": {
+              "i": {
                 "docs": {},
-                "c": {
-                  "3": {
-                    "docs": {
-                      "index.html": {
-                        "ref": "index.html",
-                        "tf": 14
+                "n": {
+                  "docs": {
+                    "index.html": {
+                      "ref": "index.html",
+                      "tf": 23.333333333333332
+                    }
+                  }
+                }
+              },
+              "e": {
+                "docs": {
+                  "FormPages.html#trigger": {
+                    "ref": "FormPages.html#trigger",
+                    "tf": 4.166666666666666
+                  },
+                  "FormPages.html#canMoveForwards": {
+                    "ref": "FormPages.html#canMoveForwards",
+                    "tf": 12.5
+                  },
+                  "FormPages.html#canMoveBackwards": {
+                    "ref": "FormPages.html#canMoveBackwards",
+                    "tf": 12.5
+                  },
+                  "FormPages.html#goTo": {
+                    "ref": "FormPages.html#goTo",
+                    "tf": 7.894736842105263
+                  },
+                  "FormPages.html#goToNextPage": {
+                    "ref": "FormPages.html#goToNextPage",
+                    "tf": 7.142857142857142
+                  },
+                  "FormPages.html#getParentDimensions": {
+                    "ref": "FormPages.html#getParentDimensions",
+                    "tf": 12.5
+                  },
+                  "FormPages.html#getPageDimensions": {
+                    "ref": "FormPages.html#getPageDimensions",
+                    "tf": 7.142857142857142
+                  }
+                },
+                "n": {
+                  "docs": {},
+                  "u": {
+                    "docs": {},
+                    "m": {
+                      "docs": {},
+                      "b": {
+                        "docs": {
+                          "FormPages.html#getPageDimensions": {
+                            "ref": "FormPages.html#getPageDimensions",
+                            "tf": 33.33333333333333
+                          }
+                        }
                       }
                     }
-                  },
-                  "docs": {}
+                  }
+                }
+              }
+            },
+            "r": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "m": {
+                  "docs": {
+                    "FormPages.html#trigger": {
+                      "ref": "FormPages.html#trigger",
+                      "tf": 33.33333333333333
+                    }
+                  }
+                }
+              },
+              "e": {
+                "docs": {},
+                "n": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "'": {
+                      "docs": {
+                        "FormPages.html#getParentDimensions": {
+                          "ref": "FormPages.html#getParentDimensions",
+                          "tf": 12.5
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "s": {
+              "docs": {},
+              "s": {
+                "docs": {
+                  "FormPages.html#trigger": {
+                    "ref": "FormPages.html#trigger",
+                    "tf": 4.166666666666666
+                  }
+                }
+              }
+            }
+          },
+          "r": {
+            "docs": {},
+            "o": {
+              "docs": {},
+              "x": {
+                "docs": {},
+                "i": {
+                  "docs": {
+                    "FormPages.html#trigger": {
+                      "ref": "FormPages.html#trigger",
+                      "tf": 4.166666666666666
+                    }
+                  }
+                }
+              }
+            },
+            "e": {
+              "docs": {},
+              "v": {
+                "docs": {},
+                ".": {
+                  "docs": {},
+                  "f": {
+                    "docs": {},
+                    "p": {
+                      "docs": {},
+                      ".": {
+                        "docs": {},
+                        "p": {
+                          "docs": {},
+                          "a": {
+                            "docs": {},
+                            "g": {
+                              "docs": {
+                                "FormPages.html#goToPrevPage": {
+                                  "ref": "FormPages.html#goToPrevPage",
+                                  "tf": 8.333333333333332
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "l": {
+            "docs": {},
+            "u": {
+              "docs": {},
+              "g": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "FormPages.html#on": {
+                        "ref": "FormPages.html#on",
+                        "tf": 16.666666666666664
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "o": {
+            "docs": {},
+            "s": {
+              "docs": {},
+              "s": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "b": {
+                    "docs": {},
+                    "l": {
+                      "docs": {
+                        "FormPages.html#getPageDimensions": {
+                          "ref": "FormPages.html#getPageDimensions",
+                          "tf": 7.142857142857142
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -901,170 +916,15 @@ window.lunrData = {
             }
           }
         },
-        "t": {
+        "w": {
           "docs": {},
-          "e": {
+          "a": {
             "docs": {},
-            "m": {
-              "docs": {},
-              "p": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "t": {
-                      "docs": {
-                        "index.html": {
-                          "ref": "index.html",
-                          "tf": 14
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "u": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "r": {
-                  "docs": {},
-                  "i": {
-                    "docs": {
-                      "undefined": {
-                        "tf": 110
-                      },
-                      "list_tutorial.html": {
-                        "ref": "list_tutorial.html",
-                        "tf": 635
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "r": {
-            "docs": {},
-            "i": {
+            "y": {
               "docs": {
-                "FormPages.html#goTo": {
-                  "ref": "FormPages.html#goTo",
-                  "tf": 2.631578947368421
-                },
-                "FormPages.html#goToNextPage": {
-                  "ref": "FormPages.html#goToNextPage",
-                  "tf": 3.571428571428571
-                }
-              },
-              "g": {
-                "docs": {},
-                "g": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "r": {
-                      "docs": {
-                        "FormPages.html#trigger": {
-                          "ref": "FormPages.html#trigger",
-                          "tf": 683.3333333333334
-                        },
-                        "FormPages.html#goToNextPage": {
-                          "ref": "FormPages.html#goToNextPage",
-                          "tf": 3.571428571428571
-                        },
-                        "FormPages.html#goToPrevPage": {
-                          "ref": "FormPages.html#goToPrevPage",
-                          "tf": 8.333333333333332
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "h": {
-            "docs": {},
-            "i": {
-              "docs": {},
-              "s": {
-                "docs": {},
-                ".": {
-                  "docs": {},
-                  "o": {
-                    "docs": {},
-                    "p": {
-                      "docs": {},
-                      "t": {
-                        "docs": {},
-                        "i": {
-                          "docs": {},
-                          "o": {
-                            "docs": {},
-                            "n": {
-                              "docs": {},
-                              "s": {
-                                "docs": {},
-                                ".": {
-                                  "docs": {},
-                                  "f": {
-                                    "docs": {},
-                                    "o": {
-                                      "docs": {},
-                                      "r": {
-                                        "docs": {},
-                                        "m": {
-                                          "docs": {},
-                                          "p": {
-                                            "docs": {},
-                                            "a": {
-                                              "docs": {},
-                                              "g": {
-                                                "docs": {},
-                                                "e": {
-                                                  "docs": {},
-                                                  "c": {
-                                                    "docs": {},
-                                                    "l": {
-                                                      "docs": {},
-                                                      "a": {
-                                                        "docs": {},
-                                                        "s": {
-                                                          "docs": {},
-                                                          "s": {
-                                                            "docs": {
-                                                              "FormPages.html#getTotalPages": {
-                                                                "ref": "FormPages.html#getTotalPages",
-                                                                "tf": 7.142857142857142
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
+                "index.html": {
+                  "ref": "index.html",
+                  "tf": 23.333333333333332
                 }
               }
             }
@@ -1436,6 +1296,185 @@ window.lunrData = {
                         "FormPages.html#getTotalPages": {
                           "ref": "FormPages.html#getTotalPages",
                           "tf": 7.142857142857142
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "h": {
+          "docs": {},
+          "a": {
+            "docs": {},
+            "n": {
+              "docs": {},
+              "d": {
+                "docs": {},
+                "l": {
+                  "docs": {
+                    "undefined": {
+                      "tf": 950
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "e": {
+            "docs": {},
+            "l": {
+              "docs": {},
+              "p": {
+                "docs": {
+                  "FormPages.html#getPageDimensions": {
+                    "ref": "FormPages.html#getPageDimensions",
+                    "tf": 7.142857142857142
+                  }
+                }
+              }
+            }
+          }
+        },
+        "t": {
+          "docs": {},
+          "u": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "i": {
+                    "docs": {
+                      "undefined": {
+                        "tf": 110
+                      },
+                      "list_tutorial.html": {
+                        "ref": "list_tutorial.html",
+                        "tf": 635
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "r": {
+            "docs": {},
+            "i": {
+              "docs": {
+                "FormPages.html#goTo": {
+                  "ref": "FormPages.html#goTo",
+                  "tf": 2.631578947368421
+                },
+                "FormPages.html#goToNextPage": {
+                  "ref": "FormPages.html#goToNextPage",
+                  "tf": 3.571428571428571
+                }
+              },
+              "g": {
+                "docs": {},
+                "g": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "FormPages.html#trigger": {
+                          "ref": "FormPages.html#trigger",
+                          "tf": 683.3333333333334
+                        },
+                        "FormPages.html#goToNextPage": {
+                          "ref": "FormPages.html#goToNextPage",
+                          "tf": 3.571428571428571
+                        },
+                        "FormPages.html#goToPrevPage": {
+                          "ref": "FormPages.html#goToPrevPage",
+                          "tf": 8.333333333333332
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "h": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "s": {
+                "docs": {},
+                ".": {
+                  "docs": {},
+                  "o": {
+                    "docs": {},
+                    "p": {
+                      "docs": {},
+                      "t": {
+                        "docs": {},
+                        "i": {
+                          "docs": {},
+                          "o": {
+                            "docs": {},
+                            "n": {
+                              "docs": {},
+                              "s": {
+                                "docs": {},
+                                ".": {
+                                  "docs": {},
+                                  "f": {
+                                    "docs": {},
+                                    "o": {
+                                      "docs": {},
+                                      "r": {
+                                        "docs": {},
+                                        "m": {
+                                          "docs": {},
+                                          "p": {
+                                            "docs": {},
+                                            "a": {
+                                              "docs": {},
+                                              "g": {
+                                                "docs": {},
+                                                "e": {
+                                                  "docs": {},
+                                                  "c": {
+                                                    "docs": {},
+                                                    "l": {
+                                                      "docs": {},
+                                                      "a": {
+                                                        "docs": {},
+                                                        "s": {
+                                                          "docs": {},
+                                                          "s": {
+                                                            "docs": {
+                                                              "FormPages.html#getTotalPages": {
+                                                                "ref": "FormPages.html#getTotalPages",
+                                                                "tf": 7.142857142857142
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -2069,189 +2108,67 @@ window.lunrData = {
             }
           }
         },
-        "p": {
+        "b": {
           "docs": {},
-          "a": {
-            "docs": {},
-            "g": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "FormPages.html#trigger": {
-                    "ref": "FormPages.html#trigger",
-                    "tf": 4.166666666666666
-                  },
-                  "FormPages.html#canMoveForwards": {
-                    "ref": "FormPages.html#canMoveForwards",
-                    "tf": 12.5
-                  },
-                  "FormPages.html#canMoveBackwards": {
-                    "ref": "FormPages.html#canMoveBackwards",
-                    "tf": 12.5
-                  },
-                  "FormPages.html#goTo": {
-                    "ref": "FormPages.html#goTo",
-                    "tf": 7.894736842105263
-                  },
-                  "FormPages.html#goToNextPage": {
-                    "ref": "FormPages.html#goToNextPage",
-                    "tf": 7.142857142857142
-                  },
-                  "FormPages.html#getParentDimensions": {
-                    "ref": "FormPages.html#getParentDimensions",
-                    "tf": 12.5
-                  },
-                  "FormPages.html#getPageDimensions": {
-                    "ref": "FormPages.html#getPageDimensions",
-                    "tf": 7.142857142857142
-                  }
-                },
-                "n": {
-                  "docs": {},
-                  "u": {
-                    "docs": {},
-                    "m": {
-                      "docs": {},
-                      "b": {
-                        "docs": {
-                          "FormPages.html#getPageDimensions": {
-                            "ref": "FormPages.html#getPageDimensions",
-                            "tf": 33.33333333333333
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "r": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "m": {
-                  "docs": {
-                    "FormPages.html#trigger": {
-                      "ref": "FormPages.html#trigger",
-                      "tf": 33.33333333333333
-                    }
-                  }
-                }
-              },
-              "e": {
-                "docs": {},
-                "n": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "'": {
-                      "docs": {
-                        "FormPages.html#getParentDimensions": {
-                          "ref": "FormPages.html#getParentDimensions",
-                          "tf": 12.5
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "s": {
-              "docs": {},
-              "s": {
-                "docs": {
-                  "FormPages.html#trigger": {
-                    "ref": "FormPages.html#trigger",
-                    "tf": 4.166666666666666
-                  }
-                }
-              }
-            }
-          },
-          "r": {
+          "o": {
             "docs": {},
             "o": {
               "docs": {},
-              "x": {
+              "l": {
                 "docs": {},
-                "i": {
-                  "docs": {
-                    "FormPages.html#trigger": {
-                      "ref": "FormPages.html#trigger",
-                      "tf": 4.166666666666666
-                    }
-                  }
-                }
-              }
-            },
-            "e": {
-              "docs": {},
-              "v": {
-                "docs": {},
-                ".": {
+                "e": {
                   "docs": {},
-                  "f": {
+                  "a": {
                     "docs": {},
-                    "p": {
-                      "docs": {},
-                      ".": {
-                        "docs": {},
-                        "p": {
-                          "docs": {},
-                          "a": {
-                            "docs": {},
-                            "g": {
-                              "docs": {
-                                "FormPages.html#goToPrevPage": {
-                                  "ref": "FormPages.html#goToPrevPage",
-                                  "tf": 8.333333333333332
-                                }
-                              }
-                            }
-                          }
+                    "n": {
+                      "docs": {
+                        "FormPages.html#canMoveForwards": {
+                          "ref": "FormPages.html#canMoveForwards",
+                          "tf": 50
+                        },
+                        "FormPages.html#canMoveBackwards": {
+                          "ref": "FormPages.html#canMoveBackwards",
+                          "tf": 50
                         }
                       }
                     }
                   }
                 }
               }
-            }
-          },
-          "l": {
-            "docs": {},
+            },
             "u": {
               "docs": {},
-              "g": {
+              "n": {
                 "docs": {},
-                "i": {
-                  "docs": {},
-                  "n": {
-                    "docs": {
-                      "FormPages.html#on": {
-                        "ref": "FormPages.html#on",
-                        "tf": 16.666666666666664
-                      }
+                "d": {
+                  "docs": {
+                    "FormPages.html#goTo": {
+                      "ref": "FormPages.html#goTo",
+                      "tf": 2.631578947368421
                     }
                   }
                 }
               }
             }
           },
-          "o": {
+          "a": {
             "docs": {},
-            "s": {
+            "c": {
               "docs": {},
-              "s": {
+              "k": {
                 "docs": {},
-                "i": {
+                "w": {
                   "docs": {},
-                  "b": {
+                  "a": {
                     "docs": {},
-                    "l": {
-                      "docs": {
-                        "FormPages.html#getPageDimensions": {
-                          "ref": "FormPages.html#getPageDimensions",
-                          "tf": 7.142857142857142
+                    "r": {
+                      "docs": {},
+                      "d": {
+                        "docs": {
+                          "FormPages.html#canMoveBackwards": {
+                            "ref": "FormPages.html#canMoveBackwards",
+                            "tf": 12.5
+                          }
                         }
                       }
                     }
@@ -2413,7 +2330,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 146
+      "length": 144
     },
     "corpusTokens": [
       "adjust",
@@ -2422,9 +2339,7 @@ window.lunrData = {
       "anim",
       "avail",
       "backward",
-      "base",
       "boolean",
-      "bootstrap",
       "bound",
       "call",
       "can't",
@@ -2445,7 +2360,6 @@ window.lunrData = {
       "element",
       "event",
       "eventnam",
-      "foodoc",
       "form",
       "formpag",
       "formpages#canmovebackward",
@@ -2469,11 +2383,9 @@ window.lunrData = {
       "gotonextpag",
       "gotoprevpag",
       "handl",
-      "handlebar",
       "help",
       "index",
       "it'",
-      "jsdoc3",
       "list",
       "list:class",
       "list:modul",
@@ -2493,6 +2405,7 @@ window.lunrData = {
       "out",
       "page",
       "pagenumb",
+      "pagin",
       "param",
       "parent'",
       "pass",
@@ -2503,14 +2416,14 @@ window.lunrData = {
       "readm",
       "return",
       "specif",
-      "templat",
       "this.options.formpageclass",
       "tri",
       "trigger",
       "tutori",
       "util",
       "valid",
-      "valu"
+      "valu",
+      "way"
     ],
     "pipeline": [
       "trimmer",
@@ -2522,11 +2435,11 @@ window.lunrData = {
     "index.html": {
       "id": "index.html",
       "kind": "readme",
-      "title": "FooDoc",
+      "title": "FormPages",
       "longname": "index",
-      "name": "FooDoc",
+      "name": "FormPages",
       "tags": "index",
-      "summary": "A Bootstrap and Handlebars based template for JSDoc3.",
+      "summary": "A way to paginate your forms",
       "description": "",
       "body": ""
     },

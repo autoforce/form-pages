@@ -39,7 +39,10 @@ import { getOptionsSelectorAlphaChars } from "./utils.js";
 const PLUGIN_NAME = "formPages",
   EVENT_NAMESPACE_PREFIX = "fp",
 
-  /** @type {EventList} */
+  /**
+   * @type {EventList}
+   * @private
+   */
   Events = {
     NEXT_PAGE: `next.${EVENT_NAMESPACE_PREFIX}.page`,
     PREV_PAGE: `prev.${EVENT_NAMESPACE_PREFIX}.page`

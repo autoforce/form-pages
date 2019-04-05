@@ -1,8 +1,9 @@
+import { fixture, libResource } from './utils';
 const puppeteer = require("puppeteer"),
     path = require('path'),
-    basicFilePath = `file://${path.resolve(__dirname, 'fixtures/basic.html')}`,
-    baseLibFile = path.resolve(__dirname, '../dist/form-pages.js'),
-    baseLibStyle = path.resolve(__dirname, '../dist/form-pages.css'),
+    basicFilePath = `file://${fixture('basic.html')}`,
+    baseLibFile = libResource('form-pages.js'),
+    baseLibStyle = libResource('form-pages.css'),
     pageableFormSelector = '.pageable-form';
 
 let browser, page;

@@ -258,6 +258,8 @@ FormPages.prototype.init = function() {
       self.options[ callbackKey ] = callback.bind( null, { currentPage: self.currentPage } );
     } );
 
+    console.log( self.options.onPrevPage, self.options.onNextPage );
+
     // Adding the default configured callbacks to the events
     self.on( Events.PREV_PAGE, self.options.onPrevPage );
     self.on( Events.NEXT_PAGE, self.options.onNextPage );
@@ -315,7 +317,7 @@ FormPages.prototype.getTotalPages = function() {
  * This also validates if the move is allowed (not out of bounds).
  * In case the component can't move to the desired page, it returns the
  * current page.
- * @return {number}
+ * @return {number} The current page or the page the component moved to.
  */
 FormPages.prototype.goTo = function( page ) {
 
@@ -369,7 +371,6 @@ FormPages.prototype.goTo = function( page ) {
 
 /**
  * Tries to move the form to the next page and returns the current page.
- * This triggers `next.fp.page` event it's a valid movement.
  * @return {number} The page the component moved to.
  */
 FormPages.prototype.goToNextPage = function() {
@@ -378,7 +379,6 @@ FormPages.prototype.goToNextPage = function() {
 
 /**
  * Tries to move the form to the previous page and returns the current page.
- * @description This triggers `prev.fp.page` event it's a valid movement.
  * @return {number} The page the component moved to.
  */
 FormPages.prototype.goToPrevPage = function() {

@@ -224,7 +224,7 @@ FormPages.prototype.getTotalPages = function() {
  * This also validates if the move is allowed (not out of bounds).
  * In case the component can't move to the desired page, it returns the
  * current page.
- * @return {number}
+ * @return {number} The current page or the page the component moved to.
  */
 FormPages.prototype.goTo = function( page ) {
 
@@ -278,8 +278,7 @@ FormPages.prototype.goTo = function( page ) {
 
 /**
  * Tries to move the form to the next page and returns the current page.
- * This triggers `next.fp.page` event it's a valid movement.
- * @return {number} The page the component moved to.
+ * @return {number} The page the component moved to or the current page.
  */
 FormPages.prototype.goToNextPage = function() {
   return this.goTo( this.currentPage + 1 );
@@ -287,8 +286,7 @@ FormPages.prototype.goToNextPage = function() {
 
 /**
  * Tries to move the form to the previous page and returns the current page.
- * @description This triggers `prev.fp.page` event it's a valid movement.
- * @return {number} The page the component moved to.
+ * @return {number} The page the component moved to or the current page.
  */
 FormPages.prototype.goToPrevPage = function() {
   return this.goTo( this.currentPage - 1 );
@@ -314,7 +312,8 @@ FormPages.prototype.getPageDimensions = function( pageNumber = 1 ) {
 
   /** @type {Dimensions} */
   let result = {},
-    $pageEl = this.$element.find( this.options.formPageClass ).eq( pageNumber - 1 );
+    $pageEl = this.$element.find( this.options.formPageClass )
+      .eq( pageNumber - 1 );
   result.width = $pageEl.outerWidth();
   result.height = $pageEl.outerHeight();
 

@@ -163,34 +163,29 @@ window.lunrData = {
         ],
         "FormPages.html#goToNextPage": [
           "current",
-          "event",
           "form",
           "formpages#gotonextpag",
           "function",
           "gotonextpag",
-          "it'",
           "move",
-          "movement",
           "next",
-          "next.fp.pag",
           "number",
           "page",
           "return",
-          "tri",
-          "trigger",
-          "valid"
+          "tri"
         ],
         "FormPages.html#goToPrevPage": [
-          "event",
+          "current",
+          "form",
           "formpages#gotoprevpag",
           "function",
           "gotoprevpag",
-          "it'",
-          "movement",
+          "move",
           "number",
-          "prev.fp.pag",
-          "trigger",
-          "valid"
+          "page",
+          "previou",
+          "return",
+          "tri"
         ],
         "FormPages.html#getParentDimensions": [
           "dimens",
@@ -243,7 +238,11 @@ window.lunrData = {
                   },
                   "FormPages.html#goToNextPage": {
                     "ref": "FormPages.html#goToNextPage",
-                    "tf": 3.571428571428571
+                    "tf": 6.25
+                  },
+                  "FormPages.html#goToPrevPage": {
+                    "ref": "FormPages.html#goToPrevPage",
+                    "tf": 6.25
                   }
                 },
                 "p": {
@@ -655,21 +654,6 @@ window.lunrData = {
                 }
               }
             }
-          },
-          "t": {
-            "docs": {},
-            "'": {
-              "docs": {
-                "FormPages.html#goToNextPage": {
-                  "ref": "FormPages.html#goToNextPage",
-                  "tf": 3.571428571428571
-                },
-                "FormPages.html#goToPrevPage": {
-                  "ref": "FormPages.html#goToPrevPage",
-                  "tf": 8.333333333333332
-                }
-              }
-            }
           }
         },
         "p": {
@@ -709,7 +693,11 @@ window.lunrData = {
                   },
                   "FormPages.html#goToNextPage": {
                     "ref": "FormPages.html#goToNextPage",
-                    "tf": 7.142857142857142
+                    "tf": 12.5
+                  },
+                  "FormPages.html#goToPrevPage": {
+                    "ref": "FormPages.html#goToPrevPage",
+                    "tf": 12.5
                   },
                   "FormPages.html#getParentDimensions": {
                     "ref": "FormPages.html#getParentDimensions",
@@ -802,27 +790,15 @@ window.lunrData = {
               "docs": {},
               "v": {
                 "docs": {},
-                ".": {
+                "i": {
                   "docs": {},
-                  "f": {
+                  "o": {
                     "docs": {},
-                    "p": {
-                      "docs": {},
-                      ".": {
-                        "docs": {},
-                        "p": {
-                          "docs": {},
-                          "a": {
-                            "docs": {},
-                            "g": {
-                              "docs": {
-                                "FormPages.html#goToPrevPage": {
-                                  "ref": "FormPages.html#goToPrevPage",
-                                  "tf": 8.333333333333332
-                                }
-                              }
-                            }
-                          }
+                    "u": {
+                      "docs": {
+                        "FormPages.html#goToPrevPage": {
+                          "ref": "FormPages.html#goToPrevPage",
+                          "tf": 6.25
                         }
                       }
                     }
@@ -907,7 +883,11 @@ window.lunrData = {
                       },
                       "FormPages.html#goToNextPage": {
                         "ref": "FormPages.html#goToNextPage",
-                        "tf": 3.571428571428571
+                        "tf": 6.25
+                      },
+                      "FormPages.html#goToPrevPage": {
+                        "ref": "FormPages.html#goToPrevPage",
+                        "tf": 6.25
                       }
                     }
                   }
@@ -1245,14 +1225,6 @@ window.lunrData = {
                     "FormPages.html#on": {
                       "ref": "FormPages.html#on",
                       "tf": 16.666666666666664
-                    },
-                    "FormPages.html#goToNextPage": {
-                      "ref": "FormPages.html#goToNextPage",
-                      "tf": 3.571428571428571
-                    },
-                    "FormPages.html#goToPrevPage": {
-                      "ref": "FormPages.html#goToPrevPage",
-                      "tf": 8.333333333333332
                     }
                   },
                   "n": {
@@ -1373,7 +1345,11 @@ window.lunrData = {
                 },
                 "FormPages.html#goToNextPage": {
                   "ref": "FormPages.html#goToNextPage",
-                  "tf": 3.571428571428571
+                  "tf": 6.25
+                },
+                "FormPages.html#goToPrevPage": {
+                  "ref": "FormPages.html#goToPrevPage",
+                  "tf": 6.25
                 }
               },
               "g": {
@@ -1387,14 +1363,6 @@ window.lunrData = {
                         "FormPages.html#trigger": {
                           "ref": "FormPages.html#trigger",
                           "tf": 683.3333333333334
-                        },
-                        "FormPages.html#goToNextPage": {
-                          "ref": "FormPages.html#goToNextPage",
-                          "tf": 3.571428571428571
-                        },
-                        "FormPages.html#goToPrevPage": {
-                          "ref": "FormPages.html#goToPrevPage",
-                          "tf": 8.333333333333332
                         }
                       }
                     }
@@ -1881,7 +1849,11 @@ window.lunrData = {
                         },
                         "FormPages.html#goToNextPage": {
                           "ref": "FormPages.html#goToNextPage",
-                          "tf": 3.571428571428571
+                          "tf": 6.25
+                        },
+                        "FormPages.html#goToPrevPage": {
+                          "ref": "FormPages.html#goToPrevPage",
+                          "tf": 6.25
                         }
                       }
                     }
@@ -1987,28 +1959,11 @@ window.lunrData = {
                   },
                   "FormPages.html#goToNextPage": {
                     "ref": "FormPages.html#goToNextPage",
-                    "tf": 3.571428571428571
-                  }
-                },
-                "m": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "n": {
-                      "docs": {},
-                      "t": {
-                        "docs": {
-                          "FormPages.html#goToNextPage": {
-                            "ref": "FormPages.html#goToNextPage",
-                            "tf": 3.571428571428571
-                          },
-                          "FormPages.html#goToPrevPage": {
-                            "ref": "FormPages.html#goToPrevPage",
-                            "tf": 8.333333333333332
-                          }
-                        }
-                      }
-                    }
+                    "tf": 6.25
+                  },
+                  "FormPages.html#goToPrevPage": {
+                    "ref": "FormPages.html#goToPrevPage",
+                    "tf": 6.25
                   }
                 }
               }
@@ -2220,33 +2175,7 @@ window.lunrData = {
                 "docs": {
                   "FormPages.html#goToNextPage": {
                     "ref": "FormPages.html#goToNextPage",
-                    "tf": 3.571428571428571
-                  }
-                },
-                ".": {
-                  "docs": {},
-                  "f": {
-                    "docs": {},
-                    "p": {
-                      "docs": {},
-                      ".": {
-                        "docs": {},
-                        "p": {
-                          "docs": {},
-                          "a": {
-                            "docs": {},
-                            "g": {
-                              "docs": {
-                                "FormPages.html#goToNextPage": {
-                                  "ref": "FormPages.html#goToNextPage",
-                                  "tf": 3.571428571428571
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
+                    "tf": 6.25
                   }
                 }
               }
@@ -2274,14 +2203,6 @@ window.lunrData = {
                     "FormPages.html#goTo": {
                       "ref": "FormPages.html#goTo",
                       "tf": 2.631578947368421
-                    },
-                    "FormPages.html#goToNextPage": {
-                      "ref": "FormPages.html#goToNextPage",
-                      "tf": 3.571428571428571
-                    },
-                    "FormPages.html#goToPrevPage": {
-                      "ref": "FormPages.html#goToPrevPage",
-                      "tf": 8.333333333333332
                     }
                   }
                 }
@@ -2330,7 +2251,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 144
+      "length": 139
     },
     "corpusTokens": [
       "adjust",
@@ -2385,7 +2306,6 @@ window.lunrData = {
       "handl",
       "help",
       "index",
-      "it'",
       "list",
       "list:class",
       "list:modul",
@@ -2396,9 +2316,7 @@ window.lunrData = {
       "modul",
       "module:util",
       "move",
-      "movement",
       "next",
-      "next.fp.pag",
       "number",
       "object",
       "option",
@@ -2411,7 +2329,7 @@ window.lunrData = {
       "pass",
       "plugin",
       "possibl",
-      "prev.fp.pag",
+      "previou",
       "proxi",
       "readm",
       "return",
@@ -2576,7 +2494,7 @@ window.lunrData = {
       "name": "goToNextPage",
       "tags": "FormPages#goToNextPage goToNextPage",
       "summary": "",
-      "description": "Tries to move the form to the next page and returns the current page. This triggers next.fp.page event it's a valid movement."
+      "description": "Tries to move the form to the next page and returns the current page."
     },
     "FormPages.html#goToPrevPage": {
       "id": "FormPages.html#goToPrevPage",
@@ -2586,7 +2504,7 @@ window.lunrData = {
       "name": "goToPrevPage",
       "tags": "FormPages#goToPrevPage goToPrevPage",
       "summary": "",
-      "description": "This triggers prev.fp.page event it's a valid movement."
+      "description": "Tries to move the form to the previous page and returns the current page."
     },
     "FormPages.html#getParentDimensions": {
       "id": "FormPages.html#getParentDimensions",

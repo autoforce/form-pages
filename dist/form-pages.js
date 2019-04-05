@@ -60,7 +60,10 @@
     var PLUGIN_NAME = "formPages",
         EVENT_NAMESPACE_PREFIX = "fp",
 
-    /** @type {EventList} */
+    /**
+     * @type {EventList}
+     * @private
+     */
     Events = {
       NEXT_PAGE: "next.".concat(EVENT_NAMESPACE_PREFIX, ".page"),
       PREV_PAGE: "prev.".concat(EVENT_NAMESPACE_PREFIX, ".page")
@@ -234,7 +237,7 @@
      * This also validates if the move is allowed (not out of bounds).
      * In case the component can't move to the desired page, it returns the
      * current page.
-     * @return {number}
+     * @return {number} The current page or the page the component moved to.
      */
 
 
@@ -278,8 +281,7 @@
     };
     /**
      * Tries to move the form to the next page and returns the current page.
-     * This triggers `next.fp.page` event it's a valid movement.
-     * @return {number} The page the component moved to.
+     * @return {number} The page the component moved to or the current page.
      */
 
 
@@ -288,8 +290,7 @@
     };
     /**
      * Tries to move the form to the previous page and returns the current page.
-     * @description This triggers `prev.fp.page` event it's a valid movement.
-     * @return {number} The page the component moved to.
+     * @return {number} The page the component moved to or the current page.
      */
 
 

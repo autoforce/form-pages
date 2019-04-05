@@ -69,20 +69,7 @@
   </div>
   <script>
     $(function () {
-      $('.pageable-form').formPages({
-        onNextPage: function (e) {
-          console.log("onNextPage", e);
-        },
-        onPrevPage: function (e) {
-          console.log("onPrevPage", e);
-        }
-      });
-      $('.pageable-form').on('next.fp.page', function (e, data) {
-        console.log('next.fp.page', data);
-      });
-      $('.pageable-form').on('prev.fp.page', function (e, data) {
-        console.log('prev.fp.page', data);
-      });
+      $('.pageable-form').formPages();
     });
   </script>
   <style>

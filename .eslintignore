@@ -1,2 +1,4 @@
 dist
 rollup.config.js
+__tests__
+jest.config.js

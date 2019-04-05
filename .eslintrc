@@ -1,0 +1,25 @@
+{
+  "extends": "jquery",
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "globals": {
+    "jQuery": true,
+    "$": true
+  },
+  "rules": {
+    "no-unused-vars": [
+      "warn",
+      {
+        "args": "none"
+      }
+    ],
+    "no-unused-expressions": [
+      "off"
+    ]
+  }
+}

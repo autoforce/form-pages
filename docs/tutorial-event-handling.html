@@ -1,0 +1,244 @@
+<!-- start:readme.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>Event Handling</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"Do MMM YYYY","systemName":"FormPages","systemSummary":"A way to paginate your forms","systemLogo":"","systemColor":"","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"Made with ♥ by <a target='blank' href='https://autoforce.com/?utm_source=github&utm_medium=footer&utm_campaign=repo-formpages&utm_content=docs'>AutoForce</a>","copyright":"","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":null,"stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false,"applicationName":"FormPages","source":{"include":["./src/"],"includePattern":".+\\.js(doc)?$","excludePattern":"(^|\\/|\\\\)_"}};
+			window.DOCLET_TOC_ENABLED = true;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">
+					FormPages
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Globals<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="global.html#defaults">defaults</a></li>
+											<li><a href="global.html#Dimensions">Dimensions</a></li>
+											<li><a href="global.html#Direction">Direction</a></li>
+											<li><a href="global.html#FormPagesOptions">FormPagesOptions</a></li>
+											<li><a href="global.html#PaginationDirection">PaginationDirection</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="FormPages.html">FormPages</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_module.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="module-Utils.html">Utils</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_tutorial.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="tutorial-event-handling.html">Event Handling</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">tutorial</span>
+				<h1><span class="title">Event Handling</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-9 main-content">
+						<ol class="breadcrumb">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="list_tutorial.html">Tutorials</a></li>
+							<li class="active">Event Handling</li>
+						</ol>
+		<section class="tutorial-section">
+			<article><h1>Event handling</h1><p>In this tutorial we are going to configure a form and listen to the events
+related to Form Pages.</p>
+<h2>Let's code</h2><pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>
+&lt;html lang=&quot;en&quot;>
+
+&lt;head>
+  &lt;meta charset=&quot;UTF-8&quot; />
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; />
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; />
+  &lt;title>Demo form&lt;/title>
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css&quot; />
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js&quot;>&lt;/script>
+  &lt;script src=&quot;form-pages.js&quot;>&lt;/script>
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;form-pages.css&quot;>
+&lt;/head>
+
+&lt;body>
+  &lt;h1 class=&quot;text-center&quot;>Demo pageable form&lt;/h1>
+  &lt;div class=&quot;container&quot;>
+    &lt;div class=&quot;col-12 col-sm-4 offset-sm-4&quot;>
+      &lt;form class=&quot;pageable-form&quot;>
+        &lt;div class=&quot;form-pages__page&quot;>
+          &lt;div class=&quot;form-group&quot;>
+            &lt;label>Name&lt;/label>
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;name&quot; />
+          &lt;/div>
+          &lt;div class=&quot;form-group&quot;>
+            &lt;label>E-mail&lt;/label>
+            &lt;input type=&quot;email&quot; class=&quot;form-control&quot; name=&quot;email&quot; />
+          &lt;/div>
+          &lt;div class=&quot;form-group&quot;>
+            &lt;div class=&quot;row&quot;>
+              &lt;div class=&quot;col-sm-6 col-12&quot;>
+                &lt;button class=&quot;btn w-100 btn-primary form-pages__prev-button&quot;>
+                  Prev
+                &lt;/button>
+              &lt;/div>
+              &lt;div class=&quot;col-sm-6 col-12&quot;>
+                &lt;button class=&quot;btn w-100 btn-primary form-pages__next-button&quot;>
+                  Next
+                &lt;/button>
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+        &lt;div class=&quot;form-pages__page&quot;>
+          &lt;div class=&quot;form-group&quot;>
+            &lt;label>Phone&lt;/label>
+            &lt;input type=&quot;tel&quot; class=&quot;form-control&quot; name=&quot;tel&quot; />
+          &lt;/div>
+          &lt;div class=&quot;form-group&quot;>
+            &lt;input type=&quot;submit&quot; class=&quot;btn btn-primary&quot; value=&quot;Submit my form!&quot; />
+          &lt;/div>
+          &lt;div class=&quot;form-group&quot;>
+            &lt;div class=&quot;row&quot;>
+              &lt;div class=&quot;col-sm-6 col-12&quot;>
+                &lt;button class=&quot;btn w-100 btn-primary form-pages__prev-button&quot;>
+                  Prev
+                &lt;/button>
+              &lt;/div>
+              &lt;div class=&quot;col-sm-6 col-12&quot;>
+                &lt;button class=&quot;btn w-100 btn-primary form-pages__next-button&quot;>
+                  Next
+                &lt;/button>
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/form>
+    &lt;/div>
+  &lt;/div>
+  &lt;script>
+    $(function () {
+      // FormPages events contains data about the current page.
+      $('.pageable-form').formPages({
+        // Listening events using callback options.
+        onNextPage: function (e) {
+          console.log(&quot;onNextPage&quot;, e);
+        },
+        onPrevPage: function (e) {
+          console.log(&quot;onPrevPage&quot;, e);
+        }
+      });
+
+      // Listening events using `on` function.
+      $('.pageable-form').on('next.fp.page', function (e, data) {
+        console.log('next.fp.page', data);
+      });
+      $('.pageable-form').on('prev.fp.page', function (e, data) {
+        console.log('prev.fp.page', data);
+      });
+    });
+  &lt;/script>
+  &lt;style>
+    .pageable-form {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .form-pages__page {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-pages__page>.form-group:last-child {
+      margin-top: auto;
+    }
+  &lt;/style>
+&lt;/body>
+
+&lt;/html></code></pre></article>
+		</section>
+			</div>
+				<div class="col-md-3 side-content">
+					<nav class="toc hidden-print hidden-sm hidden-xs"></nav>
+				</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">Made with ♥ by <a target='blank' href='https://autoforce.com/?utm_source=github&utm_medium=footer&utm_campaign=repo-formpages&utm_content=docs'>AutoForce</a></div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on 5th Apr 2019 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:readme.hbs -->

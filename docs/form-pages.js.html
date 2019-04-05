@@ -1,0 +1,462 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>form-pages.js</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"Do MMM YYYY","systemName":"FormPages","systemSummary":"A way to paginate your forms","systemLogo":"","systemColor":"","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"Made with ♥ by <a target='blank' href='https://autoforce.com/?utm_source=github&utm_medium=footer&utm_campaign=repo-formpages&utm_content=docs'>AutoForce</a>","copyright":"","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":null,"stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false,"applicationName":"FormPages","source":{"include":["./src/"],"includePattern":".+\\.js(doc)?$","excludePattern":"(^|\\/|\\\\)_"}};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">
+					FormPages
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Globals<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="global.html#defaults">defaults</a></li>
+											<li><a href="global.html#Dimensions">Dimensions</a></li>
+											<li><a href="global.html#Direction">Direction</a></li>
+											<li><a href="global.html#FormPagesOptions">FormPagesOptions</a></li>
+											<li><a href="global.html#PaginationDirection">PaginationDirection</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="FormPages.html">FormPages</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_module.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="module-Utils.html">Utils</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="list_tutorial.html" class="dropdown-toggle" data-toggle="dropdown">Tutorials<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="tutorial-event-handling.html">Event Handling</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">form-pages.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import "./form-pages.scss";
+import { getOptionsSelectorAlphaChars } from "./utils.js";
+
+/**
+ * Plugin
+ */
+
+/**
+* @typedef {('horizontal'|'vertical')} PaginationDirection
+*/
+
+/**
+ * @typedef {('next'|'prev'|'none')} Direction
+ */
+
+/**
+ * @typedef {Object} FormPagesOptions
+ * @property {string} formPageClass=".form-pages__page" The selector which will separate the form pages.
+ * @property {string} activePageClass=".form-pages__page--active" The active page selector.
+ * @property {string} nextButtonClass=".form-pages__next-button" The selector for the "next" button.
+ * @property {string} prevButtonClass=".form-pages__prev-button" The selector for the "previous" button.
+ * @property {string} formPagesContainerClass=".form-pages__page-container" The selector for the pages container which holds all the pages.
+ * @property {string} submitButtonClass=".form-pages__submit-button" The selector for the form submit button.
+ * @property {PaginationDirection} paginationDirection="horizontal" The direction that the form will move.
+ * @property {function?} onNextPage Callback to be triggered when the form goes to the next page.
+ * @property {function?} onPrevPage Callback to be triggered when the form goes to the previous page.
+ */
+
+/**
+ * @enum {{string: string}} EventList
+ */
+
+/**
+ * @typedef Dimensions
+ * @property {number} width
+ * @property {number} height
+ */
+
+const PLUGIN_NAME = "formPages",
+  EVENT_NAMESPACE_PREFIX = "fp",
+
+  /**
+   * @type {EventList}
+   * @private
+   */
+  Events = {
+    NEXT_PAGE: `next.${EVENT_NAMESPACE_PREFIX}.page`,
+    PREV_PAGE: `prev.${EVENT_NAMESPACE_PREFIX}.page`
+  },
+  PaginationDirection = {
+    HORIZONTAL: "horizontal",
+    VERTICAL: "vertical"
+  },
+  CALLBACKS = [
+    "onNextPage",
+    "onPrevPage"
+  ];
+
+
+/** @type {FormPagesOptions} */
+let defaults = {
+  formPageClass: ".form-pages__page",
+  nextButtonClass: ".form-pages__next-button",
+  prevButtonClass: ".form-pages__prev-button",
+  submitButtonClass: ".form-pages__submit-button",
+  paginationDirection: PaginationDirection.HORIZONTAL,
+  activePageClass: ".form-pages__page--active",
+  formPagesContainerClass: ".form-pages__page-container"
+},
+  $formPagesContainer = $( "&lt;div>&lt;/div>" ),
+  $pages;
+
+/**
+ * @class
+ * @description Creates the FormPages component.
+ * @property {jQuery} $element The form which the plugin is constructed upon.
+ * @property {FormPagesOptions} options
+ * @property {number} totalPages The total os pages found in the container object.
+ * @param {jQuery!} element The main form element.
+ * @param {FormPagesOptions?} options
+ */
+function FormPages( element, options ) {
+  this.$element = $( element );
+  this.options = $.extend( {}, defaults, options );
+
+  // Control variables
+  this.currentPage = 1;
+
+  this._defaults = defaults;
+  this._name = PLUGIN_NAME;
+
+  this.getOptionsSelectorAlphaChars = getOptionsSelectorAlphaChars.bind( this );
+
+  this.init();
+}
+
+/**
+ * Makes a proxy and calls events to the main `$element` object, passing the
+ * current page as event data.
+ * @param {string} eventName
+ * @param {object} params Params passed to the jQuery trigger function to be attached as event data.
+ */
+FormPages.prototype.trigger = function( eventName, params ) {
+  this.$element.trigger( eventName, $.extend( {}, params, { currentPage: this.currentPage } ) );
+};
+
+/**
+ * Configures events to the plugin
+ * @param {string} eventName
+ * @param {function} cb Event callback
+ * See {@tutorial event-handling}
+ */
+FormPages.prototype.on = function( eventName, cb ) {
+  this.$element.on( eventName, null, { currentPage: this.currentPage }, cb );
+};
+
+/**
+ * Checks if the pages can move forwards.
+ * @return {boolean}
+ */
+FormPages.prototype.canMoveForwards = function() {
+  return this.currentPage + 1 &lt;= this.getTotalPages();
+};
+
+/**
+ * Checks if the pages can move backwards.
+ * @return {boolean}
+ */
+FormPages.prototype.canMoveBackwards = function() {
+  return this.currentPage - 1 > 0;
+};
+
+/**
+ * Initializes the plugin.
+ * @private
+ */
+FormPages.prototype.init = function() {
+  const self = this;
+
+  $pages = this.$element.find( this.options.formPageClass );
+
+  // Adding the form pages container class to the $formPagesContainer.
+  $formPagesContainer.addClass(
+    this.getOptionsSelectorAlphaChars( "formPagesContainerClass" ) );
+
+  // Step 1: Add the correspondent classes
+  // Removing the active classes from the pages as a way to prevent wrongly
+  // presented pages, then we add the active page class to the first page.
+  $pages
+    .removeClass( this.getOptionsSelectorAlphaChars( "activePageClass" ) )
+    .first()
+    .addClass( this.getOptionsSelectorAlphaChars( "activePageClass" ) );
+
+  // Step 2: Move the pages to the container
+  $pages.appendTo( $formPagesContainer );
+  this.$element.append( $formPagesContainer );
+
+  // Step 3: Configuring the default triggers.
+  function configureDefaultTriggers() {
+
+    // Proxying the configured event callbacks
+    $.each( CALLBACKS, function( index, callbackKey ) {
+      const callback = self.options[ callbackKey ];
+      if ( !callback ) {
+        return;
+      }
+      self.options[ callbackKey ] = callback.bind( null, { currentPage: self.currentPage } );
+    } );
+
+    console.log( self.options.onPrevPage, self.options.onNextPage );
+
+    // Adding the default configured callbacks to the events
+    self.on( Events.PREV_PAGE, self.options.onPrevPage );
+    self.on( Events.NEXT_PAGE, self.options.onNextPage );
+
+    // If valid, we always move on next or previous events.
+    self.on( Events.PREV_PAGE, function( e ) {
+      self.goToPrevPage();
+    } );
+
+    self.on( Events.NEXT_PAGE, function( e ) {
+      self.goToNextPage();
+    } );
+
+    self.on( "click", function( e ) {
+      const $target = $( e.target );
+
+      // We should prevent default when clicked on "next" or "prev" buttons.
+      // to avoid sending the form.
+      // We manually check if the form can move forwards or backwards so
+      // that we avoid triggering the event when the movement is out of
+      // boundaries.
+      if ( $target.is( self.options.prevButtonClass ) ) {
+        e.preventDefault();
+        self.canMoveBackwards() &amp;&amp; self.trigger( Events.PREV_PAGE );
+      } else if ( $target.is( self.options.nextButtonClass ) ) {
+        e.preventDefault();
+        self.canMoveForwards() &amp;&amp; self.trigger( Events.NEXT_PAGE );
+      }
+    } );
+  }
+
+  function configureContainerFormClasses() {
+    let classes = "form-pages--active";
+    if ( self.options.paginationDirection === PaginationDirection.VERTICAL ) {
+      classes += " form-pages--vertical";
+    }
+    self.$element.addClass( classes );
+  }
+
+  configureDefaultTriggers();
+  configureContainerFormClasses();
+};
+
+/**
+ * Checks the amount of the elements that matches to the
+ * `this.options.formPageClass` option value.
+ * @return {number}
+ */
+FormPages.prototype.getTotalPages = function() {
+  return this.$element.find( this.options.formPageClass ).length;
+};
+
+/**
+ * Tries to move the form to a specific page.
+ * This also validates if the move is allowed (not out of bounds).
+ * In case the component can't move to the desired page, it returns the
+ * current page.
+ * @return {number} The current page or the page the component moved to.
+ */
+FormPages.prototype.goTo = function( page ) {
+
+  /** @type {Direction} */
+  let movingDirection = "next";
+
+  // Page must be bigger than zero and less than the total pages
+  if ( !( page &lt;= 0 || page > this.getTotalPages() ) ) {
+    movingDirection = page > this.currentPage ? "next" : "prev";
+    this.currentPage = page;
+  } else {
+    movingDirection = "none";
+  }
+
+  if ( movingDirection === "none" ) {
+    return this.currentPage;
+  }
+
+  // Animating the pages
+  const $activePage = $formPagesContainer.find( this.options.activePageClass );
+
+  $activePage
+    .removeClass( this.getOptionsSelectorAlphaChars( "activePageClass" ) );
+
+  // Can be the previous page also. "next" in this case does not imply
+  // direction or position.
+  let $nextPageToBeShown,
+    translationX =
+      `${this.getPageDimensions().width * ( this.currentPage - 1 )}`;
+
+  // Verifyting the direction
+  switch ( movingDirection ) {
+    case "next":
+      $nextPageToBeShown = $activePage
+        .next();
+      translationX = `-${translationX}`;
+      break;
+    case "prev":
+      $nextPageToBeShown = $activePage
+        .prev();
+      break;
+  }
+
+  $nextPageToBeShown.addClass(
+    this.getOptionsSelectorAlphaChars( "activePageClass" ) );
+  $formPagesContainer.css( "transform",
+    `translateX(${translationX}px)` );
+
+  return this.currentPage;
+};
+
+/**
+ * Tries to move the form to the next page and returns the current page.
+ * @return {number} The page the component moved to.
+ */
+FormPages.prototype.goToNextPage = function() {
+  return this.goTo( this.currentPage + 1 );
+};
+
+/**
+ * Tries to move the form to the previous page and returns the current page.
+ * @return {number} The page the component moved to.
+ */
+FormPages.prototype.goToPrevPage = function() {
+  return this.goTo( this.currentPage - 1 );
+};
+
+/**
+ * Gets the pages' parent's dimensions.
+ * @return {Dimensions}
+ */
+FormPages.prototype.getParentDimensions = function() {
+  return {
+    width: this.$element.outerWidth(),
+    height: this.$element.outerHeight()
+  };
+};
+
+/**
+ * Gets the dimensions of the page to help adjust possible animations.
+ * @param {number} pageNumber
+ * @returns {Dimensions}
+ */
+FormPages.prototype.getPageDimensions = function( pageNumber = 1 ) {
+
+  /** @type {Dimensions} */
+  let result = {},
+    $pageEl = this.$element.find( this.options.formPageClass ).eq( pageNumber - 1 );
+  result.width = $pageEl.outerWidth();
+  result.height = $pageEl.outerHeight();
+
+  return result;
+};
+
+( function( $, window, document, undefined ) {
+
+  /**
+   * @param {FormPagesOptions} options
+   */
+  $.fn[ PLUGIN_NAME ] = function( options ) {
+    return this.each( function() {
+      if ( !$.data( this, "plugin_" + PLUGIN_NAME ) ) {
+        $.data( this, "plugin_" + PLUGIN_NAME, new FormPages( this, options ) );
+      }
+    } );
+  };
+} )( jQuery, window, document );
+</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">Made with ♥ by <a target='blank' href='https://autoforce.com/?utm_source=github&utm_medium=footer&utm_campaign=repo-formpages&utm_content=docs'>AutoForce</a></div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on 5th Apr 2019 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

@@ -1,0 +1,1 @@
+.form-pages--active{overflow:hidden}.form-pages__page-container{display:flex;flex-wrap:nowrap;flex-direction:row;transition:transform .45s ease-in-out}.form-pages__page{transition:opacity .45s ease-in-out;opacity:0;flex:1 0 100%}.form-pages__page--active{opacity:1}.form-pages--vertical{flex-direction:column}

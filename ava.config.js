@@ -1,6 +1,6 @@
 export default {
     files: [
-        "tests/**/*.test.js"
+        "test/**/*.test.js"
     ],
     concurrency: 3,
     verbose: true,

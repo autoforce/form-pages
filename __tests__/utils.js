@@ -6,7 +6,7 @@ const path = require('path');
  * @returns {string} The fixture path
  */
 export function fixture(file) {
-    return path.resolve(__dirname, `fixtures/${file}`);
+  return path.resolve(__dirname, `fixtures/${file}`);
 }
 
 /**
@@ -15,5 +15,6 @@ export function fixture(file) {
  * @returns {string} The resource path
  */
 export function libResource(file, distResource = true) {
-    return path.resolve(__dirname, `${distResource ? '../dist/' : '../src'}${file}`);
+  return path.resolve(__dirname,
+    `${distResource ? '../dist/' : '../src'}${file}`);
 }

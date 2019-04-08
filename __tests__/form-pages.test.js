@@ -19,6 +19,51 @@ afterEach(async () => {
   await browser.close();
 });
 
+describe('Plugins classes', () => {
+  it('it configures user-chosen `formPagesContainerClass`', async () => {
+    expect.assertions(1);
+    const result = await page.evaluate(selector => {
+      const $el = $(selector);
+      const formPagesContainerClass = '.my-form-container';
+      $el.formPages({
+        formPagesContainerClass,
+      });
+      return $el.find(formPagesContainerClass).length > 0;
+    }, pageableFormSelector);
+
+    expect(result).toBe(true);
+  });
+});
+
+describe('User interactions', () => {
+  it('it moves to the next page', async () => {
+    expect.assertions(1);
+    const activePageIndex = await page.evaluate(selector => {
+      const $el = $(selector);
+      $el.formPages();
+      $el.trigger('next.fp.page');
+      return $el.find($el.data('plugin_formPages').options.activePageClass)
+        .index();
+    }, pageableFormSelector);
+
+    expect(activePageIndex).toBe(1);
+  });
+
+  it('it moves to the prev page', async () => {
+    expect.assertions(1);
+    const activePageIndex = await page.evaluate(selector => {
+      const $el = $(selector);
+      $el.formPages();
+      $el.trigger('next.fp.page');
+      $el.trigger('prev.fp.page');
+      return $el.find($el.data('plugin_formPages').options.activePageClass)
+        .index();
+    }, pageableFormSelector);
+
+    expect(activePageIndex).toBe(0);
+  });
+});
+
 describe('Component initialization', () => {
   it('it initializes the component', async () => {
     expect.assertions(1);
@@ -29,6 +74,34 @@ describe('Component initialization', () => {
     }, pageableFormSelector);
 
     expect(initializedPlugin).toBe(true);
+  });
+
+  it('it creates the correct number of pages', async () => {
+    expect.assertions(1);
+    const totalPages = await page.evaluate(selector => {
+      const $el = $(selector);
+      $el.formPages();
+      return $el.find(
+        $el.data('plugin_formPages')._defaults.formPageClass
+      ).length;
+    }, pageableFormSelector);
+    expect(totalPages).toBe(2);
+  });
+
+  it('it moves all the pages to the container', async () => {
+    expect.assertions(1);
+    const totalMovedPages = await page.evaluate(selector => {
+      const $el = $(selector);
+      $el.formPages();
+
+      return $el.find(
+        $el.data('plugin_formPages')._defaults.formPagesContainerClass
+      ).find(
+        $el.data('plugin_formPages')._defaults.formPageClass
+      ).length;
+    }, pageableFormSelector);
+
+    expect(totalMovedPages).toBe(2);
   });
 });
 

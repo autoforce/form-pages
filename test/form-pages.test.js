@@ -1,6 +1,18 @@
 import test from 'ava';
 import withPage from './helpers/withPage';
+import { fixture, libResource } from './helpers/utils';
 const pageableFormSelector = '.pageable-form';
+const basicFilePath = `file://${fixture( 'basic.html' )}`;
+const baseLibFile = libResource( 'form-pages.js' );
+const baseLibStyle = libResource( 'form-pages.css' );
+
+test.beforeEach(t => {
+  t.context.data = {
+    basicFilePath,
+    baseLibFile,
+    baseLibStyle,
+  };
+});
 
 test( 'it configures user-chosen `formPagesContainerClass`', withPage,
   async (t, page) => {

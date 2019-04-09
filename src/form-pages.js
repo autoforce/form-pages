@@ -52,8 +52,14 @@ const PLUGIN_NAME = "formPages",
     VERTICAL: "vertical"
   },
   CALLBACKS = [
-    "onNextPage",
-    "onPrevPage"
+    {
+      name: "onNextPage",
+      associatedEvent: Events.NEXT_PAGE
+    },
+    {
+      name: "onPrevPage",
+      associatedEvent: Events.PREV_PAGE
+    }
   ];
 
 
@@ -103,7 +109,8 @@ function FormPages( element, options ) {
  * @param {object} params Params passed to the jQuery trigger function to be attached as event data.
  */
 FormPages.prototype.trigger = function( eventName, params ) {
-  this.$element.trigger( eventName, $.extend( {}, params, { currentPage: this.currentPage } ) );
+  this.$element.trigger( eventName, $.extend( {}, params || {},
+    { currentPage: this.currentPage } ) );
 };
 
 /**
@@ -161,17 +168,17 @@ FormPages.prototype.init = function() {
   function configureDefaultTriggers() {
 
     // Proxying the configured event callbacks
-    $.each( CALLBACKS, function( index, callbackKey ) {
-      const callback = self.options[ callbackKey ];
-      if ( !callback ) {
+    $.each( CALLBACKS, function( i, callback ) {
+      const callbackFn = self.options[ callback.name ];
+      if ( !callbackFn ) {
         return;
       }
-      self.options[ callbackKey ] = callback.bind( null, { currentPage: self.currentPage } );
-    } );
 
-    // Adding the default configured callbacks to the events
-    self.on( Events.PREV_PAGE, self.options.onPrevPage );
-    self.on( Events.NEXT_PAGE, self.options.onNextPage );
+      // Adding the default configured callbacks to the events
+      self.options[ callback.name ] = callbackFn.bind( null,
+        { currentPage: self.currentPage } );
+        self.on( callback.associatedEvent, callbackFn );
+    } );
 
     // If valid, we always move on next or previous events.
     self.on( Events.PREV_PAGE, function( e ) {

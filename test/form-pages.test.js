@@ -89,22 +89,23 @@ test( 'it moves all the pages to the container', withPage, async (t, page) => {
   t.is( totalMovedPages, 2 );
 } );
 
-test( "it calls the callback when 'previous' button is clicked", withPage, async (t, page) => {
-  const callbackCalled = await page.evaluate( selector => {
-    let callbackCalled = false;
-    const $el = $( selector );
-    $el.formPages( {
-      onPrevPage: function() {
-        callbackCalled = true;
-      },
-    } );
-    $el.find( '.form-pages__next-button' ).first().trigger( 'click' );
-    $el.find( '.form-pages__prev-button' ).first().trigger( 'click' );
-    return callbackCalled;
-  }, pageableFormSelector );
+test( "it calls the callback when 'previous' button is clicked", withPage,
+  async (t, page) => {
+    const callbackCalled = await page.evaluate( selector => {
+      let callbackCalled = false;
+      const $el = $( selector );
+      $el.formPages( {
+        onPrevPage: function() {
+          callbackCalled = true;
+        },
+      } );
+      $el.find( '.form-pages__next-button' ).first().trigger( 'click' );
+      $el.find( '.form-pages__prev-button' ).first().trigger( 'click' );
+      return callbackCalled;
+    }, pageableFormSelector );
 
-  t.is( callbackCalled, true );
-} );
+    t.is( callbackCalled, true );
+  } );
 
 test( "it calls the callback when 'next' button is clicked", withPage,
   async (t, page) => {
@@ -122,3 +123,42 @@ test( "it calls the callback when 'next' button is clicked", withPage,
 
     t.is( callbackCalled, true );
   } );
+
+test('it does not move to next page when out of bounds', withPage,
+  async (t, page) => {
+    const nextCallbackCalledOutOfBounds = await page.evaluate(selector => {
+      let nextCallbackCalledOutOfBounds = false;
+      const $el = $(selector);
+      $el.formPages({
+        onNextPage(e) {
+          nextCallbackCalledOutOfBounds = e.data.currentPage > $el
+            .data('plugin_formPages').getTotalPages();
+        },
+      });
+
+      $el.trigger('next.fp.page');
+      $el.trigger('next.fp.page');
+      $el.trigger('next.fp.page');
+      return nextCallbackCalledOutOfBounds;
+    }, pageableFormSelector);
+
+    t.is(nextCallbackCalledOutOfBounds, false);
+  });
+
+test('it does not move to previous page when out of bounds', withPage,
+  async (t, page) => {
+    const prevCallbackCalledOutOfBounds = await page.evaluate(selector => {
+      let prevCallbackCalledOutOfBounds = false;
+      const $el = $(selector);
+      $el.formPages({
+        onPrevPage(e) {
+          prevCallbackCalledOutOfBounds = e.data.currentPage < 1;
+        },
+      });
+
+      $el.trigger('prev.fp.page');
+      return prevCallbackCalledOutOfBounds;
+    }, pageableFormSelector);
+
+    t.is(prevCallbackCalledOutOfBounds, false);
+  });

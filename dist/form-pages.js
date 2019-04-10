@@ -72,7 +72,13 @@
       HORIZONTAL: "horizontal",
       VERTICAL: "vertical"
     },
-        CALLBACKS = ["onNextPage", "onPrevPage"];
+        CALLBACKS = [{
+      name: "onNextPage",
+      associatedEvent: Events.NEXT_PAGE
+    }, {
+      name: "onPrevPage",
+      associatedEvent: Events.PREV_PAGE
+    }];
     /** @type {FormPagesOptions} */
 
     var defaults = {
@@ -82,7 +88,9 @@
       submitButtonClass: ".form-pages__submit-button",
       paginationDirection: PaginationDirection.HORIZONTAL,
       activePageClass: ".form-pages__page--active",
-      formPagesContainerClass: ".form-pages__page-container"
+      formPagesContainerClass: ".form-pages__page-container",
+      onNextPage: function onNextPage() {},
+      onPrevPage: function onPrevPage() {}
     },
         $formPagesContainer = $("<div></div>"),
         $pages;
@@ -115,7 +123,7 @@
 
 
     FormPages.prototype.trigger = function (eventName, params) {
-      this.$element.trigger(eventName, $.extend({}, params, {
+      this.$element.trigger(eventName, $.extend({}, params || {}, {
         currentPage: this.currentPage
       }));
     };
@@ -171,20 +179,19 @@
 
       function configureDefaultTriggers() {
         // Proxying the configured event callbacks
-        $.each(CALLBACKS, function (index, callbackKey) {
-          var callback = self.options[callbackKey];
+        $.each(CALLBACKS, function (i, callback) {
+          var callbackFn = self.options[callback.name];
 
-          if (!callback) {
+          if (!callbackFn) {
             return;
-          }
+          } // Adding the default configured callbacks to the events
 
-          self.options[callbackKey] = callback.bind(null, {
+
+          self.options[callback.name] = callbackFn.bind(null, {
             currentPage: self.currentPage
           });
-        }); // Adding the default configured callbacks to the events
-
-        self.on(Events.PREV_PAGE, self.options.onPrevPage);
-        self.on(Events.NEXT_PAGE, self.options.onNextPage); // If valid, we always move on next or previous events.
+          self.on(callback.associatedEvent, callbackFn);
+        }); // If valid, we always move on next or previous events.
 
         self.on(Events.PREV_PAGE, function (e) {
           self.goToPrevPage();

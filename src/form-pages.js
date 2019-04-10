@@ -217,6 +217,12 @@ FormPages.prototype.init = function() {
 
   configureDefaultTriggers();
   configureContainerFormClasses();
+
+  // Configuring window resize trigger to recalculate the pages translation
+  $( window ).on( "resize", function() {
+    console.log( "resize" );
+    self.translateToPage( self.currentPage );
+  } );
 };
 
 /**
@@ -233,6 +239,7 @@ FormPages.prototype.getTotalPages = function() {
  * This also validates if the move is allowed (not out of bounds).
  * In case the component can't move to the desired page, it returns the
  * current page.
+ * @param {number} page the page index - 1
  * @return {number} The current page or the page the component moved to.
  */
 FormPages.prototype.goTo = function( page ) {
@@ -258,31 +265,34 @@ FormPages.prototype.goTo = function( page ) {
   $activePage
     .removeClass( this.getOptionsSelectorAlphaChars( "activePageClass" ) );
 
+  this.translateToPage( page );
+
+  return this.currentPage;
+};
+
+/**
+ * Translates the page to show the active one. Useful when page resizes.
+ * @param {number} page
+ * @todo make the translation works on Y axis.
+ * @private
+ */
+FormPages.prototype.translateToPage = function( page ) {
+  let $nextPageToBeShown = $formPagesContainer
+  .find( this.options.formPageClass ).eq( page - 1 ),
+
   // Can be the previous page also. "next" in this case does not imply
   // direction or position.
-  let $nextPageToBeShown,
     translationX =
       `${this.getPageDimensions().width * ( this.currentPage - 1 )}`;
 
-  // Verifyting the direction
-  switch ( movingDirection ) {
-    case "next":
-      $nextPageToBeShown = $activePage
-        .next();
-      translationX = `-${translationX}`;
-      break;
-    case "prev":
-      $nextPageToBeShown = $activePage
-        .prev();
-      break;
+  if ( page > this.currentPage - 1 ) {
+    translationX = `-${translationX}`;
   }
 
   $nextPageToBeShown.addClass(
     this.getOptionsSelectorAlphaChars( "activePageClass" ) );
   $formPagesContainer.css( "transform",
     `translateX(${translationX}px)` );
-
-  return this.currentPage;
 };
 
 /**

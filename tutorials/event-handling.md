@@ -87,11 +87,11 @@ related to Form Pages.
       });
 
       // Listening events using `on` function.
-      $('.pageable-form').on('next.fp.page', function (e, data) {
-        console.log('next.fp.page', data);
+      $('.pageable-form').on('next.fp.page', function () {
+        console.log('next.fp.page');
       });
-      $('.pageable-form').on('prev.fp.page', function (e, data) {
-        console.log('prev.fp.page', data);
+      $('.pageable-form').on('prev.fp.page', function () {
+        console.log('prev.fp.page');
       });
     });
   </script>

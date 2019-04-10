@@ -24,7 +24,8 @@
             "excludePattern": "(^|\\/|\\\\)_"
         },
         "scripts": [
-            "https://buttons.github.io/buttons.js"
+            "https://buttons.github.io/buttons.js",
+            "./customScripts/addAnalytics.js"
         ]
     }
 }

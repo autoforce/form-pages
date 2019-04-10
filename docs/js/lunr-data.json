@@ -689,7 +689,7 @@
                   },
                   "FormPages.html#goTo": {
                     "ref": "FormPages.html#goTo",
-                    "tf": 7.894736842105263
+                    "tf": 41.22807017543859
                   },
                   "FormPages.html#goToNextPage": {
                     "ref": "FormPages.html#goToNextPage",
@@ -1146,7 +1146,7 @@
                 "docs": {
                   "FormPages.html#goTo": {
                     "ref": "FormPages.html#goTo",
-                    "tf": 700
+                    "tf": 683.3333333333334
                   }
                 },
                 "n": {
@@ -2151,7 +2151,7 @@
                       },
                       "FormPages.html#goTo": {
                         "ref": "FormPages.html#goTo",
-                        "tf": 50
+                        "tf": 33.33333333333333
                       },
                       "FormPages.html#goToNextPage": {
                         "ref": "FormPages.html#goToNextPage",
@@ -2479,7 +2479,7 @@
     "FormPages.html#goTo": {
       "id": "FormPages.html#goTo",
       "kind": "function",
-      "title": "goTo() → {number}",
+      "title": "goTo( page ) → {number}",
       "longname": "FormPages#goTo",
       "name": "goTo",
       "tags": "FormPages#goTo goTo",

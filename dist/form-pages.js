@@ -227,7 +227,12 @@
       }
 
       configureDefaultTriggers();
-      configureContainerFormClasses();
+      configureContainerFormClasses(); // Configuring window resize trigger to recalculate the pages translation
+
+      $(window).on("resize", function () {
+        console.log("resize");
+        self.translateToPage(self.currentPage);
+      });
     };
     /**
      * Checks the amount of the elements that matches to the
@@ -244,6 +249,7 @@
      * This also validates if the move is allowed (not out of bounds).
      * In case the component can't move to the desired page, it returns the
      * current page.
+     * @param {number} page the page index - 1
      * @return {number} The current page or the page the component moved to.
      */
 
@@ -265,26 +271,30 @@
 
 
       var $activePage = $formPagesContainer.find(this.options.activePageClass);
-      $activePage.removeClass(this.getOptionsSelectorAlphaChars("activePageClass")); // Can be the previous page also. "next" in this case does not imply
+      $activePage.removeClass(this.getOptionsSelectorAlphaChars("activePageClass"));
+      this.translateToPage(page);
+      return this.currentPage;
+    };
+    /**
+     * Translates the page to show the active one. Useful when page resizes.
+     * @param {number} page
+     * @todo make the translation works on Y axis.
+     * @private
+     */
+
+
+    FormPages.prototype.translateToPage = function (page) {
+      var $nextPageToBeShown = $formPagesContainer.find(this.options.formPageClass).eq(page - 1),
+          // Can be the previous page also. "next" in this case does not imply
       // direction or position.
+      translationX = "".concat(this.getPageDimensions().width * (this.currentPage - 1));
 
-      var $nextPageToBeShown,
-          translationX = "".concat(this.getPageDimensions().width * (this.currentPage - 1)); // Verifyting the direction
-
-      switch (movingDirection) {
-        case "next":
-          $nextPageToBeShown = $activePage.next();
-          translationX = "-".concat(translationX);
-          break;
-
-        case "prev":
-          $nextPageToBeShown = $activePage.prev();
-          break;
+      if (page > this.currentPage - 1) {
+        translationX = "-".concat(translationX);
       }
 
       $nextPageToBeShown.addClass(this.getOptionsSelectorAlphaChars("activePageClass"));
       $formPagesContainer.css("transform", "translateX(".concat(translationX, "px)"));
-      return this.currentPage;
     };
     /**
      * Tries to move the form to the next page and returns the current page.

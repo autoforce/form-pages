@@ -2,10 +2,6 @@ import "./form-pages.scss";
 import { getOptionsSelectorAlphaChars } from "./utils.js";
 
 /**
- * Plugin
- */
-
-/**
 * @typedef {('horizontal'|'vertical')} PaginationDirection
 */
 

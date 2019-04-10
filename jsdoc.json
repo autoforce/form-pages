@@ -12,7 +12,7 @@
         "applicationName": "FormPages",
         "linenums": true,
         "systemName": "FormPages",
-        "systemSummary": "A way to paginate your forms",
+        "systemSummary": "A simple way to paginate your forms<br><a href=''>GitHub repo</a><br> <a class='github-button' href='https://github.com/autoforce/form-pages/fork' data-icon='octicon-repo-forked' data-size='large' aria-label='Fork formPages on GitHub'>Fork us on GitHub</a>",
         "copyright": "",
         "footer": "Made with ♥ by <a target='blank' href='https://autoforce.com/?utm_source=github&utm_medium=footer&utm_campaign=repo-formpages&utm_content=docs'>AutoForce</a>",
         "collapseSymbols": false,
@@ -22,6 +22,9 @@
             ],
             "includePattern": ".+\\.js(doc)?$",
             "excludePattern": "(^|\\/|\\\\)_"
-        }
+        },
+        "scripts": [
+            "https://buttons.github.io/buttons.js"
+        ]
     }
 }

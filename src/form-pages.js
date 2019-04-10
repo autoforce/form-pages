@@ -220,7 +220,6 @@ FormPages.prototype.init = function() {
 
   // Configuring window resize trigger to recalculate the pages translation
   $( window ).on( "resize", function() {
-    console.log( "resize" );
     self.translateToPage( self.currentPage );
   } );
 };

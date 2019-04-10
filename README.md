@@ -43,4 +43,4 @@ $('.pageable-form').formPages();
 ```
 
 This is all you need to make your paginated form work.
-Check the options, events e methods [here](./FormPages.html).
+Check the options, events e methods [here](https://autoforce.github.io/form-pages/FormPages.html).

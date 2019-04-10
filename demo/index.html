@@ -69,7 +69,24 @@
   </div>
   <script>
     $(function () {
-      $('.pageable-form').formPages();
+      // FormPages events contains data about the current page.
+      $('.pageable-form').formPages({
+        // Listening events using callback options.
+        onNextPage: function (e, data) {
+          console.log("onNextPage", e, data);
+        },
+        onPrevPage: function (e, data) {
+          console.log("onPrevPage", e, data);
+        }
+      });
+
+      // Listening events using `on` function.
+      $('.pageable-form').on('next.fp.page', function () {
+        console.log('next.fp.page');
+      });
+      $('.pageable-form').on('prev.fp.page', function () {
+        console.log('prev.fp.page');
+      });
     });
   </script>
   <style>

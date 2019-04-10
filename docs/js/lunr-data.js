@@ -40,11 +40,15 @@ window.lunrData = {
     "documentStore": {
       "store": {
         "index.html": [
-          "form",
+          "fork",
           "formpag",
+          "formsgithub",
+          "github",
           "index",
           "pagin",
           "readm",
+          "repo",
+          "simpl",
           "way"
         ],
         "global.html": [
@@ -226,12 +230,16 @@ window.lunrData = {
             "docs": {},
             "r": {
               "docs": {},
-              "m": {
+              "k": {
                 "docs": {
                   "index.html": {
                     "ref": "index.html",
-                    "tf": 23.333333333333332
-                  },
+                    "tf": 10
+                  }
+                }
+              },
+              "m": {
+                "docs": {
                   "FormPages.html#goTo": {
                     "ref": "FormPages.html#goTo",
                     "tf": 2.631578947368421
@@ -552,6 +560,32 @@ window.lunrData = {
                       }
                     }
                   }
+                },
+                "s": {
+                  "docs": {},
+                  "g": {
+                    "docs": {},
+                    "i": {
+                      "docs": {},
+                      "t": {
+                        "docs": {},
+                        "h": {
+                          "docs": {},
+                          "u": {
+                            "docs": {},
+                            "b": {
+                              "docs": {
+                                "index.html": {
+                                  "ref": "index.html",
+                                  "tf": 10
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               },
               "w": {
@@ -636,6 +670,229 @@ window.lunrData = {
             }
           }
         },
+        "g": {
+          "docs": {},
+          "i": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "h": {
+                "docs": {},
+                "u": {
+                  "docs": {},
+                  "b": {
+                    "docs": {
+                      "index.html": {
+                        "ref": "index.html",
+                        "tf": 10
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "l": {
+            "docs": {},
+            "o": {
+              "docs": {},
+              "b": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "l": {
+                    "docs": {
+                      "global.html": {
+                        "ref": "global.html",
+                        "tf": 2045
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "e": {
+            "docs": {},
+            "t": {
+              "docs": {
+                "FormPages.html#getParentDimensions": {
+                  "ref": "FormPages.html#getParentDimensions",
+                  "tf": 12.5
+                },
+                "FormPages.html#getPageDimensions": {
+                  "ref": "FormPages.html#getPageDimensions",
+                  "tf": 7.142857142857142
+                }
+              },
+              "t": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "l": {
+                        "docs": {},
+                        "p": {
+                          "docs": {},
+                          "a": {
+                            "docs": {},
+                            "g": {
+                              "docs": {
+                                "FormPages.html#getTotalPages": {
+                                  "ref": "FormPages.html#getTotalPages",
+                                  "tf": 700
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "p": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "n": {
+                        "docs": {},
+                        "t": {
+                          "docs": {},
+                          "d": {
+                            "docs": {},
+                            "i": {
+                              "docs": {},
+                              "m": {
+                                "docs": {},
+                                "e": {
+                                  "docs": {},
+                                  "n": {
+                                    "docs": {},
+                                    "s": {
+                                      "docs": {
+                                        "FormPages.html#getParentDimensions": {
+                                          "ref": "FormPages.html#getParentDimensions",
+                                          "tf": 700
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "g": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "d": {
+                        "docs": {},
+                        "i": {
+                          "docs": {},
+                          "m": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              "n": {
+                                "docs": {},
+                                "s": {
+                                  "docs": {
+                                    "FormPages.html#getPageDimensions": {
+                                      "ref": "FormPages.html#getPageDimensions",
+                                      "tf": 683.3333333333334
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "o": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "o": {
+                "docs": {
+                  "FormPages.html#goTo": {
+                    "ref": "FormPages.html#goTo",
+                    "tf": 683.3333333333334
+                  }
+                },
+                "n": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "x": {
+                      "docs": {},
+                      "t": {
+                        "docs": {},
+                        "p": {
+                          "docs": {},
+                          "a": {
+                            "docs": {},
+                            "g": {
+                              "docs": {
+                                "FormPages.html#goToNextPage": {
+                                  "ref": "FormPages.html#goToNextPage",
+                                  "tf": 700
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "p": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "v": {
+                        "docs": {},
+                        "p": {
+                          "docs": {},
+                          "a": {
+                            "docs": {},
+                            "g": {
+                              "docs": {
+                                "FormPages.html#goToPrevPage": {
+                                  "ref": "FormPages.html#goToPrevPage",
+                                  "tf": 700
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "i": {
           "docs": {},
           "n": {
@@ -668,7 +925,7 @@ window.lunrData = {
                   "docs": {
                     "index.html": {
                       "ref": "index.html",
-                      "tf": 23.333333333333332
+                      "tf": 10
                     }
                   }
                 }
@@ -869,6 +1126,17 @@ window.lunrData = {
                 }
               }
             },
+            "p": {
+              "docs": {},
+              "o": {
+                "docs": {
+                  "index.html": {
+                    "ref": "index.html",
+                    "tf": 10
+                  }
+                }
+              }
+            },
             "t": {
               "docs": {},
               "u": {
@@ -896,6 +1164,46 @@ window.lunrData = {
             }
           }
         },
+        "s": {
+          "docs": {},
+          "i": {
+            "docs": {},
+            "m": {
+              "docs": {},
+              "p": {
+                "docs": {},
+                "l": {
+                  "docs": {
+                    "index.html": {
+                      "ref": "index.html",
+                      "tf": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p": {
+            "docs": {},
+            "e": {
+              "docs": {},
+              "c": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "f": {
+                    "docs": {
+                      "FormPages.html#goTo": {
+                        "ref": "FormPages.html#goTo",
+                        "tf": 2.631578947368421
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "w": {
           "docs": {},
           "a": {
@@ -904,7 +1212,7 @@ window.lunrData = {
               "docs": {
                 "index.html": {
                   "ref": "index.html",
-                  "tf": 23.333333333333332
+                  "tf": 10
                 }
               }
             }
@@ -994,209 +1302,6 @@ window.lunrData = {
                       "FormPages.html#getPageDimensions": {
                         "ref": "FormPages.html#getPageDimensions",
                         "tf": 40.47619047619047
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "g": {
-          "docs": {},
-          "l": {
-            "docs": {},
-            "o": {
-              "docs": {},
-              "b": {
-                "docs": {},
-                "a": {
-                  "docs": {},
-                  "l": {
-                    "docs": {
-                      "global.html": {
-                        "ref": "global.html",
-                        "tf": 2045
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "e": {
-            "docs": {},
-            "t": {
-              "docs": {
-                "FormPages.html#getParentDimensions": {
-                  "ref": "FormPages.html#getParentDimensions",
-                  "tf": 12.5
-                },
-                "FormPages.html#getPageDimensions": {
-                  "ref": "FormPages.html#getPageDimensions",
-                  "tf": 7.142857142857142
-                }
-              },
-              "t": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "a": {
-                      "docs": {},
-                      "l": {
-                        "docs": {},
-                        "p": {
-                          "docs": {},
-                          "a": {
-                            "docs": {},
-                            "g": {
-                              "docs": {
-                                "FormPages.html#getTotalPages": {
-                                  "ref": "FormPages.html#getTotalPages",
-                                  "tf": 700
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "p": {
-                "docs": {},
-                "a": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "n": {
-                        "docs": {},
-                        "t": {
-                          "docs": {},
-                          "d": {
-                            "docs": {},
-                            "i": {
-                              "docs": {},
-                              "m": {
-                                "docs": {},
-                                "e": {
-                                  "docs": {},
-                                  "n": {
-                                    "docs": {},
-                                    "s": {
-                                      "docs": {
-                                        "FormPages.html#getParentDimensions": {
-                                          "ref": "FormPages.html#getParentDimensions",
-                                          "tf": 700
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "g": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "d": {
-                        "docs": {},
-                        "i": {
-                          "docs": {},
-                          "m": {
-                            "docs": {},
-                            "e": {
-                              "docs": {},
-                              "n": {
-                                "docs": {},
-                                "s": {
-                                  "docs": {
-                                    "FormPages.html#getPageDimensions": {
-                                      "ref": "FormPages.html#getPageDimensions",
-                                      "tf": 683.3333333333334
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "o": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "o": {
-                "docs": {
-                  "FormPages.html#goTo": {
-                    "ref": "FormPages.html#goTo",
-                    "tf": 683.3333333333334
-                  }
-                },
-                "n": {
-                  "docs": {},
-                  "e": {
-                    "docs": {},
-                    "x": {
-                      "docs": {},
-                      "t": {
-                        "docs": {},
-                        "p": {
-                          "docs": {},
-                          "a": {
-                            "docs": {},
-                            "g": {
-                              "docs": {
-                                "FormPages.html#goToNextPage": {
-                                  "ref": "FormPages.html#goToNextPage",
-                                  "tf": 700
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "p": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "v": {
-                        "docs": {},
-                        "p": {
-                          "docs": {},
-                          "a": {
-                            "docs": {},
-                            "g": {
-                              "docs": {
-                                "FormPages.html#goToPrevPage": {
-                                  "ref": "FormPages.html#goToPrevPage",
-                                  "tf": 700
-                                }
-                              }
-                            }
-                          }
-                        }
                       }
                     }
                   }
@@ -2210,29 +2315,6 @@ window.lunrData = {
             }
           }
         },
-        "s": {
-          "docs": {},
-          "p": {
-            "docs": {},
-            "e": {
-              "docs": {},
-              "c": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "f": {
-                    "docs": {
-                      "FormPages.html#goTo": {
-                        "ref": "FormPages.html#goTo",
-                        "tf": 2.631578947368421
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "u": {
           "docs": {},
           "t": {
@@ -2251,7 +2333,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 139
+      "length": 143
     },
     "corpusTokens": [
       "adjust",
@@ -2281,6 +2363,7 @@ window.lunrData = {
       "element",
       "event",
       "eventnam",
+      "fork",
       "form",
       "formpag",
       "formpages#canmovebackward",
@@ -2293,12 +2376,14 @@ window.lunrData = {
       "formpages#gotoprevpag",
       "formpages#on",
       "formpages#trigg",
+      "formsgithub",
       "forward",
       "function",
       "get",
       "getpagedimens",
       "getparentdimens",
       "gettotalpag",
+      "github",
       "global",
       "goto",
       "gotonextpag",
@@ -2332,7 +2417,9 @@ window.lunrData = {
       "previou",
       "proxi",
       "readm",
+      "repo",
       "return",
+      "simpl",
       "specif",
       "this.options.formpageclass",
       "tri",
@@ -2357,7 +2444,7 @@ window.lunrData = {
       "longname": "index",
       "name": "FormPages",
       "tags": "index",
-      "summary": "A way to paginate your forms",
+      "summary": "A simple way to paginate your formsGitHub repo Fork us on GitHub",
       "description": "",
       "body": ""
     },

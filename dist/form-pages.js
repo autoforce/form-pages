@@ -23,10 +23,6 @@
     }();
 
     /**
-     * Plugin
-     */
-
-    /**
     * @typedef {('horizontal'|'vertical')} PaginationDirection
     */
 
@@ -230,7 +226,6 @@
       configureContainerFormClasses(); // Configuring window resize trigger to recalculate the pages translation
 
       $(window).on("resize", function () {
-        console.log("resize");
         self.translateToPage(self.currentPage);
       });
     };

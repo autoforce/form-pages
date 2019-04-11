@@ -11,6 +11,8 @@ import { getOptionsSelectorAlphaChars } from "./utils.js";
 
 /**
  * @typedef {Object} FormPagesOptions
+ * All properties which the suffix is "Class" can be an array, which will be
+ * joined and cleaned before being added to the elements.
  * @property {string} formPageClass=".form-pages__page" The selector which will separate the form pages.
  * @property {string} activePageClass=".form-pages__page--active" The active page selector.
  * @property {string} nextButtonClass=".form-pages__next-button" The selector for the "next" button.
@@ -18,8 +20,9 @@ import { getOptionsSelectorAlphaChars } from "./utils.js";
  * @property {string} formPagesContainerClass=".form-pages__page-container" The selector for the pages container which holds all the pages.
  * @property {string} submitButtonClass=".form-pages__submit-button" The selector for the form submit button.
  * @property {PaginationDirection} paginationDirection="horizontal" The direction that the form will move.
- * @property {function?} onNextPage Callback to be triggered when the form goes to the next page.
- * @property {function?} onPrevPage Callback to be triggered when the form goes to the previous page.
+ * @property {function?} onInitialized Callback for when plugin finishes loading.
+ * @property {function?} onNextPage Callback for when the form goes to the next page.
+ * @property {function?} onPrevPage Callback for when the form goes to the previous page.
  */
 
 /**
@@ -40,8 +43,9 @@ const PLUGIN_NAME = "formPages",
    * @private
    */
   Events = {
-    NEXT_PAGE: `next.${EVENT_NAMESPACE_PREFIX}.page`,
-    PREV_PAGE: `prev.${EVENT_NAMESPACE_PREFIX}.page`
+    NEXT_PAGE: `next.page.${EVENT_NAMESPACE_PREFIX}`,
+    PREV_PAGE: `prev.page.${EVENT_NAMESPACE_PREFIX}`,
+    INITIALIZED: `initialized.${EVENT_NAMESPACE_PREFIX}`
   },
   PaginationDirection = {
     HORIZONTAL: "horizontal",
@@ -55,6 +59,10 @@ const PLUGIN_NAME = "formPages",
     {
       name: "onPrevPage",
       associatedEvent: Events.PREV_PAGE
+    },
+    {
+      name: "onInitialized",
+      associatedEvent: Events.INITIALIZED
     }
   ];
 
@@ -69,7 +77,8 @@ let defaults = {
   activePageClass: ".form-pages__page--active",
   formPagesContainerClass: ".form-pages__page-container",
   onNextPage() { },
-  onPrevPage() { }
+  onPrevPage() { },
+  onInitialized() { }
 },
   $formPagesContainer = $( "<div></div>" ),
   $pages;
@@ -170,18 +179,24 @@ FormPages.prototype.init = function() {
         return;
       }
 
+      let eventData = { currentPage: self.currentPage };
+
+      // Some special eventData treatment for some events.
+      if ( callback.associatedEvent === Events.INITIALIZED ) {
+        eventData = { instance: self };
+      }
+
       // Adding the default configured callbacks to the events
-      self.options[ callback.name ] = callbackFn.bind( null,
-        { currentPage: self.currentPage } );
-        self.on( callback.associatedEvent, callbackFn );
+      self.options[ callback.name ] = callbackFn.bind( null, eventData );
+      self.on( callback.associatedEvent, callbackFn );
     } );
 
     // If valid, we always move on next or previous events.
-    self.on( Events.PREV_PAGE, function( e ) {
+    self.on( Events.PREV_PAGE, function() {
       self.goToPrevPage();
     } );
 
-    self.on( Events.NEXT_PAGE, function( e ) {
+    self.on( Events.NEXT_PAGE, function() {
       self.goToNextPage();
     } );
 
@@ -213,6 +228,8 @@ FormPages.prototype.init = function() {
 
   configureDefaultTriggers();
   configureContainerFormClasses();
+
+  self.options.onInitialized.call( this, this );
 
   // Configuring window resize trigger to recalculate the pages translation
   $( window ).on( "resize", function() {

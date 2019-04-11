@@ -32,9 +32,9 @@
     "rollup-plugin-uglify": "^6.0.2",
     "tap-nyan": "^1.1.0"
   },
-  "main": "dist/form-pages.min.js",
+  "main": "dist/form-pages.js",
   "files": [
-    "dist/form-pages.min.css"
+    "dist/form-pages.css"
   ],
   "dependencies": {},
   "peerDependencies": {

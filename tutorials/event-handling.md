@@ -75,23 +75,30 @@ related to Form Pages.
   </div>
   <script>
     $(function () {
+      var $pageableForm = $('.pageable-form');
       // FormPages events contains data about the current page.
-      $('.pageable-form').formPages({
+      $pageableForm.formPages({
         // Listening events using callback options.
         onNextPage: function (e) {
           console.log("onNextPage", e);
         },
         onPrevPage: function (e) {
           console.log("onPrevPage", e);
+        },
+        onInitialized: function(instance) {
+          console.log("onInitialized", instance);
         }
       });
 
       // Listening events using `on` function.
-      $('.pageable-form').on('next.fp.page', function () {
-        console.log('next.fp.page');
+      $pageableForm.on('next.page.fp', function () {
+        console.log('next.page.fp');
       });
-      $('.pageable-form').on('prev.fp.page', function () {
-        console.log('prev.fp.page');
+      $pageableForm.on('prev.page.fp', function () {
+        console.log('prev.page.fp');
+      });
+      $pageableForm.on('initialized.fp.page', function () {
+        console.log('prev.page.fp');
       });
     });
   </script>

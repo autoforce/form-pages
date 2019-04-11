@@ -32,7 +32,7 @@ test( 'it moves to the next page', withPage, async (t, page) => {
   const activePageIndex = await page.evaluate( selector => {
     const $el = $( selector );
     $el.formPages();
-    $el.trigger( 'next.fp.page' );
+    $el.trigger( 'next.page.fp' );
     return $el.find( $el.data( 'plugin_formPages' ).options.activePageClass )
       .index();
   }, pageableFormSelector );
@@ -44,8 +44,8 @@ test( 'it moves to the prev page', withPage, async (t, page) => {
   const activePageIndex = await page.evaluate( selector => {
     const $el = $( selector );
     $el.formPages();
-    $el.trigger( 'next.fp.page' );
-    $el.trigger( 'prev.fp.page' );
+    $el.trigger( 'next.page.fp' );
+    $el.trigger( 'prev.page.fp' );
     return $el.find( $el.data( 'plugin_formPages' ).options.activePageClass )
       .index();
   }, pageableFormSelector );
@@ -136,9 +136,9 @@ test('it does not move to next page when out of bounds', withPage,
         },
       });
 
-      $el.trigger('next.fp.page');
-      $el.trigger('next.fp.page');
-      $el.trigger('next.fp.page');
+      $el.trigger('next.page.fp');
+      $el.trigger('next.page.fp');
+      $el.trigger('next.page.fp');
       return nextCallbackCalledOutOfBounds;
     }, pageableFormSelector);
 
@@ -156,7 +156,7 @@ test('it does not move to previous page when out of bounds', withPage,
         },
       });
 
-      $el.trigger('prev.fp.page');
+      $el.trigger('prev.page.fp');
       return prevCallbackCalledOutOfBounds;
     }, pageableFormSelector);
 

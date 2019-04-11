@@ -15,7 +15,7 @@ export let getOptionsSelectorAlphaChars = ( function() {
     let memo = {};
 
     return function( key ) {
-        memo[ key ] = memo[ key ] || this.options[ key ].replace( /^(.|#)/gm, "" );
+        memo[ key ] = memo[ key ] || this.options[ key ].replace( /(\.)/gm, " " );
         return memo[ key ];
     };
 } )();

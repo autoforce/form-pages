@@ -34,6 +34,7 @@
      * @typedef {Object} FormPagesOptions
      * All properties which the suffix is "Class" can be an array, which will be
      * joined and cleaned before being added to the elements.
+     * The value of `this` on all callbacks is the jQuery element you applied the plugin to.
      * @property {string} formPageClass=".form-pages__page" The selector which will separate the form pages.
      * @property {string} activePageClass=".form-pages__page--active" The active page selector.
      * @property {string} nextButtonClass=".form-pages__next-button" The selector for the "next" button.
@@ -44,6 +45,8 @@
      * @property {function?} onInitialized Callback for when plugin finishes loading.
      * @property {function?} onNextPage Callback for when the form goes to the next page.
      * @property {function?} onPrevPage Callback for when the form goes to the previous page.
+     * @property {function?} onSubmitForm Callback for when the form gets submitted.
+     * @property {function?} shouldMoveForwards Callback to validate if the form should move forwards. Useful for validation.
      */
 
     /**
@@ -94,7 +97,10 @@
       formPagesContainerClass: ".form-pages__page-container",
       onNextPage: function onNextPage() {},
       onPrevPage: function onPrevPage() {},
-      onInitialized: function onInitialized() {}
+      onInitialized: function onInitialized() {},
+      shouldMoveForwards: function shouldMoveForwards() {
+        return true;
+      }
     },
         $formPagesContainer = $("<div></div>"),
         $pages;
@@ -201,8 +207,8 @@
           } // Adding the default configured callbacks to the events
 
 
-          self.options[callback.name] = callbackFn.bind(null, eventData);
-          self.on(callback.associatedEvent, callbackFn);
+          self.options[callback.name] = callbackFn.bind(self.$element, eventData);
+          self.on(callback.associatedEvent, self.options[callback.name]);
         }); // If valid, we always move on next or previous events.
 
         self.on(Events.PREV_PAGE, function () {
@@ -223,7 +229,7 @@
             self.canMoveBackwards() && self.trigger(Events.PREV_PAGE);
           } else if ($target.is(self.options.nextButtonClass)) {
             e.preventDefault();
-            self.canMoveForwards() && self.trigger(Events.NEXT_PAGE);
+            self.canMoveForwards() && self.options.shouldMoveForwards() && self.trigger(Events.NEXT_PAGE);
           }
         });
       }
@@ -315,7 +321,7 @@
 
 
     FormPages.prototype.goToNextPage = function () {
-      return this.goTo(this.currentPage + 1);
+      return this.options.shouldMoveForwards() ? this.goTo(this.currentPage + 1) : this.currentPage;
     };
     /**
      * Tries to move the form to the previous page and returns the current page.

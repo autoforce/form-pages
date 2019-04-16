@@ -29,8 +29,7 @@
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-sass": "^1.1.0",
     "rollup-plugin-serve": "^1.0.1",
-    "rollup-plugin-uglify": "^6.0.2",
-    "tap-nyan": "^1.1.0"
+    "rollup-plugin-uglify": "^6.0.2"
   },
   "main": "dist/form-pages.js",
   "files": [
@@ -45,11 +44,11 @@
     "build:production": "rollup --config --environment BUILD:production",
     "watch": "rollup --config --watch --environment BUILD:development,WATCH",
     "generate:doc": "jsdoc ./src/form-pages.js ./src/utils.js ./README.md --configure jsdoc.json",
-    "test": "BABEL_ENV=test ava --tap | npx tap-nyan"
+    "test": "BABEL_ENV=test ava"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint src/**/*.js test/**/*.js --fix",
+      "pre-commit": "eslint src/**/*.js test/**/*.js --fix && yarn build && yarn build:production && yarn generate:doc && git add docs dist",
       "pre-push": "yarn test"
     }
   }

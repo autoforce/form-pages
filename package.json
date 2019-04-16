@@ -48,7 +48,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint src/**/*.js test/**/*.js --fix",
+      "pre-commit": "eslint src/**/*.js test/**/*.js --fix && yarn build && yarn build:production && yarn generate:doc && git add docs dist",
       "pre-push": "yarn test"
     }
   }

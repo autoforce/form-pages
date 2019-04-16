@@ -2,9 +2,9 @@ import test from 'ava';
 import withPage from './helpers/withPage';
 import { fixture, libResource } from './helpers/utils';
 const pageableFormSelector = '.pageable-form';
-const basicFilePath = `file://${fixture( 'basic.html' )}`;
-const baseLibFile = libResource( 'form-pages.js' );
-const baseLibStyle = libResource( 'form-pages.css' );
+const basicFilePath = `file://${fixture('basic.html')}`;
+const baseLibFile = libResource('form-pages.js');
+const baseLibStyle = libResource('form-pages.css');
 
 test.beforeEach(t => {
   t.context.data = {
@@ -21,7 +21,7 @@ test('it does not move to next page when out of bounds', withPage,
       const $el = $(selector);
       $el.formPages({
         onNextPage(e) {
-          nextCallbackCalledOutOfBounds = e.data.currentPage > $el
+          nextCallbackCalledOutOfBounds = e.currentPage > $el
             .data('plugin_formPages').getTotalPages();
         },
       });
@@ -42,7 +42,7 @@ test('it does not move to previous page when out of bounds', withPage,
       const $el = $(selector);
       $el.formPages({
         onPrevPage(e) {
-          prevCallbackCalledOutOfBounds = e.data.currentPage < 1;
+          prevCallbackCalledOutOfBounds = e.currentPage < 1;
         },
       });
 

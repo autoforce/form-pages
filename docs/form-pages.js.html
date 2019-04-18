@@ -185,7 +185,7 @@ let defaults = {
  * @description Creates the FormPages component.
  * @property {jQuery} $element The form which the plugin is constructed upon.
  * @property {FormPagesOptions} options
- * @property {number} totalPages The total os pages found in the container object.
+ * @property {number} currentPage The current page index, starting on zero.
  * @param {jQuery!} element The main form element.
  * @param {FormPagesOptions?} options
  */
@@ -194,7 +194,7 @@ function FormPages( element, options ) {
   this.options = $.extend( {}, defaults, options );
 
   // Control variables
-  this.currentPage = 1;
+  this.currentPage = 0;
 
   this._defaults = defaults;
   this._name = PLUGIN_NAME;
@@ -210,8 +210,8 @@ function FormPages( element, options ) {
  * @param {string} eventName
  * @param {object} params Params passed to the jQuery trigger function to be attached as event data.
  */
-FormPages.prototype.trigger = function( eventName, params ) {
-  this.$element.trigger( eventName, $.extend( {}, params || {},
+FormPages.prototype.trigger = function( eventName, params = {} ) {
+  this.$element.trigger( eventName, $.extend( {}, params,
     { currentPage: this.currentPage } ) );
 };
 
@@ -231,7 +231,7 @@ FormPages.prototype.on = function( eventName, cb, filter = null ) {
  * @return {boolean}
  */
 FormPages.prototype.canMoveForwards = function() {
-  return this.currentPage + 1 &lt;= this.getTotalPages();
+  return this.currentPage + 1 &lt; this.getTotalPages();
 };
 
 /**
@@ -239,7 +239,7 @@ FormPages.prototype.canMoveForwards = function() {
  * @return {boolean}
  */
 FormPages.prototype.canMoveBackwards = function() {
-  return this.currentPage - 1 > 0;
+  return this.currentPage - 1 >= 0;
 };
 
 /**
@@ -311,15 +311,22 @@ FormPages.prototype.init = function() {
       // We manually check if the form can move forwards or backwards so
       // that we avoid triggering the event when the movement is out of
       // boundaries.
+      console.group( "Responding to the 'click' navigation buttons:" );
       if ( $target.is( self.options.prevButtonClass ) ) {
+        console.log( "Previous button clicked" );
         e.preventDefault();
+        console.log( `self.canMoveBackwards(): ${self.canMoveBackwards()}` );
         self.canMoveBackwards() &amp;&amp; self.trigger( Events.PREV_PAGE );
       } else if ( $target.is( self.options.nextButtonClass ) ) {
+        console.log( "Next button clicked" );
         e.preventDefault();
+        console.log( `self.canMoveForwards(): ${self.canMoveForwards()}` );
+        console.log( `self.options.shouldMoveForwards(): ${self.options.shouldMoveForwards()}` );
         self.canMoveForwards() &amp;&amp;
           self.options.shouldMoveForwards() &amp;&amp;
           self.trigger( Events.NEXT_PAGE );
       }
+      console.groupEnd();
     }, `${self.options.prevButtonClass}, ${self.options.nextButtonClass}` );
   }
 
@@ -360,12 +367,13 @@ FormPages.prototype.getTotalPages = function() {
  * @return {number} The current page or the page the component moved to.
  */
 FormPages.prototype.goTo = function( page ) {
+  console.group( `goTo(${page})` );
 
   /** @type {Direction} */
   let movingDirection = "next";
 
   // Page must be bigger than zero and less than the total pages
-  if ( !( page &lt;= 0 || page > this.getTotalPages() ) ) {
+  if ( !( page &lt; 0 || page > this.getTotalPages() ) ) {
     movingDirection = page > this.currentPage ? "next" : "prev";
     this.currentPage = page;
   } else {
@@ -376,6 +384,8 @@ FormPages.prototype.goTo = function( page ) {
     return this.currentPage;
   }
 
+  console.log( `movingDirection: ${movingDirection}` );
+
   // Animating the pages
   const $activePage = $formPagesContainer.find( this.options.activePageClass );
 
@@ -383,6 +393,8 @@ FormPages.prototype.goTo = function( page ) {
     .removeClass( this.getOptionsSelectorAlphaChars( "activePageClass" ) );
 
   this.translateToPage( page );
+
+  console.groupEnd();
 
   return this.currentPage;
 };
@@ -394,15 +406,20 @@ FormPages.prototype.goTo = function( page ) {
  * @private
  */
 FormPages.prototype.translateToPage = function( page ) {
-  let $nextPageToBeShown = $formPagesContainer
-    .find( this.options.formPageClass ).eq( page - 1 ),
+  console.group( `translateToPage(${page})` );
+  console.log( `currentPage: ${this.currentPage}` );
 
-    // Can be the previous page also. "next" in this case does not imply
-    // direction or position.
+  // $nextPageToBeShown can be the previous page also. "next" in this case does
+  // not imply direction or position.
+  let $nextPageToBeShown = $formPagesContainer
+    .find( this.options.formPageClass ).eq( page ),
     translationX =
-      `${this.getPageDimensions().width * ( this.currentPage - 1 )}`;
+      `${this.getPageDimensions().width * ( this.currentPage )}`;
+
+  console.log( "$nextPageToBeShown: ", $nextPageToBeShown );
 
   if ( page > this.currentPage - 1 ) {
+    console.log( "this.currentPage > page: ", this.currentPage > page );
     translationX = `-${translationX}`;
   }
 
@@ -410,6 +427,7 @@ FormPages.prototype.translateToPage = function( page ) {
     this.getOptionsSelectorAlphaChars( "activePageClass" ) );
   $formPagesContainer.css( "transform",
     `translateX(${translationX}px)` );
+  console.groupEnd();
 };
 
 /**
@@ -417,6 +435,10 @@ FormPages.prototype.translateToPage = function( page ) {
  * @return {number} The page the component moved to or the current page.
  */
 FormPages.prototype.goToNextPage = function() {
+  console.group( "goToNextPage()" );
+  console.log( "shouldMoveForwards() ", this.options.shouldMoveForwards() );
+  console.log( "this.currentPage: " + this.currentPage );
+  console.groupEnd();
   return this.options.shouldMoveForwards() ?
     this.goTo( this.currentPage + 1 ) :
     this.currentPage;
@@ -427,6 +449,10 @@ FormPages.prototype.goToNextPage = function() {
  * @return {number} The page the component moved to or the current page.
  */
 FormPages.prototype.goToPrevPage = function() {
+  console.group( "goToNextPage()" );
+  console.log( "shouldMoveForwards() ", this.options.shouldMoveForwards() );
+  console.log( "this.currentPage: " + this.currentPage );
+  console.groupEnd();
   return this.goTo( this.currentPage - 1 );
 };
 
@@ -457,6 +483,16 @@ FormPages.prototype.getPageDimensions = function( pageNumber = 1 ) {
 
   return result;
 };
+
+/**
+ * Gets the active page as jQuery object.
+ *
+ * @returns {jQuery|null}
+ */
+FormPages.prototype.getCurrentPageElement = function() {
+  return this.$element.find( this.options.formPageClass ).eq( this.currentPage );
+};
+
 
 ( function( $, window, document, undefined ) {
 

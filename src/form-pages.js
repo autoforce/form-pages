@@ -119,8 +119,8 @@ function FormPages( element, options ) {
  * @param {string} eventName
  * @param {object} params Params passed to the jQuery trigger function to be attached as event data.
  */
-FormPages.prototype.trigger = function( eventName, params ) {
-  this.$element.trigger( eventName, $.extend( {}, params || {},
+FormPages.prototype.trigger = function( eventName, params = {} ) {
+  this.$element.trigger( eventName, $.extend( {}, params,
     { currentPage: this.currentPage } ) );
 };
 

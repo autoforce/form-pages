@@ -132,8 +132,9 @@
      */
 
 
-    FormPages.prototype.trigger = function (eventName, params) {
-      this.$element.trigger(eventName, $.extend({}, params || {}, {
+    FormPages.prototype.trigger = function (eventName) {
+      var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      this.$element.trigger(eventName, $.extend({}, params, {
         currentPage: this.currentPage
       }));
     };

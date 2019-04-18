@@ -214,13 +214,24 @@ window.lunrData = {
           "pagenumb",
           "possibl"
         ],
+        "FormPages.html#getCurrentPageElement": [
+          "activ",
+          "formpages#getcurrentpageel",
+          "function",
+          "get",
+          "getcurrentpageel",
+          "jqueri",
+          "jquery|nul",
+          "object",
+          "page"
+        ],
         "module-Utils.html": [
           "modul",
           "module:util",
           "util"
         ]
       },
-      "length": 18
+      "length": 19
     },
     "tokenStore": {
       "root": {
@@ -486,6 +497,50 @@ window.lunrData = {
                                         }
                                       }
                                     }
+                                  },
+                                  "c": {
+                                    "docs": {},
+                                    "u": {
+                                      "docs": {},
+                                      "r": {
+                                        "docs": {},
+                                        "r": {
+                                          "docs": {},
+                                          "e": {
+                                            "docs": {},
+                                            "n": {
+                                              "docs": {},
+                                              "t": {
+                                                "docs": {},
+                                                "p": {
+                                                  "docs": {},
+                                                  "a": {
+                                                    "docs": {},
+                                                    "g": {
+                                                      "docs": {},
+                                                      "e": {
+                                                        "docs": {},
+                                                        "e": {
+                                                          "docs": {},
+                                                          "l": {
+                                                            "docs": {
+                                                              "FormPages.html#getCurrentPageElement": {
+                                                                "ref": "FormPages.html#getCurrentPageElement",
+                                                                "tf": 1150
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
                                   }
                                 }
                               },
@@ -661,6 +716,10 @@ window.lunrData = {
                           "FormPages.html#getPageDimensions": {
                             "ref": "FormPages.html#getPageDimensions",
                             "tf": 110
+                          },
+                          "FormPages.html#getCurrentPageElement": {
+                            "ref": "FormPages.html#getCurrentPageElement",
+                            "tf": 110
                           }
                         }
                       }
@@ -744,6 +803,10 @@ window.lunrData = {
                 "FormPages.html#getPageDimensions": {
                   "ref": "FormPages.html#getPageDimensions",
                   "tf": 7.142857142857142
+                },
+                "FormPages.html#getCurrentPageElement": {
+                  "ref": "FormPages.html#getCurrentPageElement",
+                  "tf": 10
                 }
               },
               "t": {
@@ -833,6 +896,50 @@ window.lunrData = {
                                     "FormPages.html#getPageDimensions": {
                                       "ref": "FormPages.html#getPageDimensions",
                                       "tf": 683.3333333333334
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "c": {
+                "docs": {},
+                "u": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "r": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "p": {
+                              "docs": {},
+                              "a": {
+                                "docs": {},
+                                "g": {
+                                  "docs": {},
+                                  "e": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "l": {
+                                        "docs": {
+                                          "FormPages.html#getCurrentPageElement": {
+                                            "ref": "FormPages.html#getCurrentPageElement",
+                                            "tf": 700
+                                          }
+                                        }
+                                      }
                                     }
                                   }
                                 }
@@ -984,6 +1091,10 @@ window.lunrData = {
                   "FormPages.html#getPageDimensions": {
                     "ref": "FormPages.html#getPageDimensions",
                     "tf": 7.142857142857142
+                  },
+                  "FormPages.html#getCurrentPageElement": {
+                    "ref": "FormPages.html#getCurrentPageElement",
+                    "tf": 10
                   }
                 },
                 "n": {
@@ -1667,6 +1778,23 @@ window.lunrData = {
                 }
               }
             }
+          },
+          "c": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "v": {
+                  "docs": {
+                    "FormPages.html#getCurrentPageElement": {
+                      "ref": "FormPages.html#getCurrentPageElement",
+                      "tf": 10
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "l": {
@@ -2150,6 +2278,10 @@ window.lunrData = {
                       "FormPages.html#trigger": {
                         "ref": "FormPages.html#trigger",
                         "tf": 4.166666666666666
+                      },
+                      "FormPages.html#getCurrentPageElement": {
+                        "ref": "FormPages.html#getCurrentPageElement",
+                        "tf": 10
                       }
                     }
                   }
@@ -2336,6 +2468,49 @@ window.lunrData = {
             }
           }
         },
+        "j": {
+          "docs": {},
+          "q": {
+            "docs": {},
+            "u": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "i": {
+                    "docs": {
+                      "FormPages.html#getCurrentPageElement": {
+                        "ref": "FormPages.html#getCurrentPageElement",
+                        "tf": 10
+                      }
+                    }
+                  },
+                  "y": {
+                    "docs": {},
+                    "|": {
+                      "docs": {},
+                      "n": {
+                        "docs": {},
+                        "u": {
+                          "docs": {},
+                          "l": {
+                            "docs": {
+                              "FormPages.html#getCurrentPageElement": {
+                                "ref": "FormPages.html#getCurrentPageElement",
+                                "tf": 50
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "u": {
           "docs": {},
           "t": {
@@ -2354,9 +2529,10 @@ window.lunrData = {
           }
         }
       },
-      "length": 144
+      "length": 153
     },
     "corpusTokens": [
+      "activ",
       "adjust",
       "allow",
       "amount",
@@ -2390,6 +2566,7 @@ window.lunrData = {
       "formpag",
       "formpages#canmovebackward",
       "formpages#canmoveforward",
+      "formpages#getcurrentpageel",
       "formpages#getpagedimens",
       "formpages#getparentdimens",
       "formpages#gettotalpag",
@@ -2402,6 +2579,7 @@ window.lunrData = {
       "forward",
       "function",
       "get",
+      "getcurrentpageel",
       "getpagedimens",
       "getparentdimens",
       "gettotalpag",
@@ -2413,6 +2591,8 @@ window.lunrData = {
       "handl",
       "help",
       "index",
+      "jqueri",
+      "jquery|nul",
       "list",
       "list:class",
       "list:modul",
@@ -2634,6 +2814,16 @@ window.lunrData = {
       "tags": "FormPages#getPageDimensions getPageDimensions",
       "summary": "",
       "description": "Gets the dimensions of the page to help adjust possible animations."
+    },
+    "FormPages.html#getCurrentPageElement": {
+      "id": "FormPages.html#getCurrentPageElement",
+      "kind": "function",
+      "title": "getCurrentPageElement() → {jQuery|null}",
+      "longname": "FormPages#getCurrentPageElement",
+      "name": "getCurrentPageElement",
+      "tags": "FormPages#getCurrentPageElement getCurrentPageElement",
+      "summary": "",
+      "description": "Gets the active page as jQuery object."
     },
     "module-Utils.html": {
       "id": "module-Utils.html",

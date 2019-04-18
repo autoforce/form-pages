@@ -42,7 +42,7 @@ test('it does not move to previous page when out of bounds', withPage,
       const $el = $(selector);
       $el.formPages({
         onPrevPage(e) {
-          prevCallbackCalledOutOfBounds = e.currentPage < 1;
+          prevCallbackCalledOutOfBounds = e.currentPage < 0;
         },
       });
 

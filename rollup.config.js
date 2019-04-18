@@ -5,13 +5,14 @@ import sass from "rollup-plugin-sass";
 import livereload from "rollup-plugin-livereload";
 import postcss from "postcss";
 import cssnano from "cssnano";
+import strip from "rollup-plugin-strip";
 
 let plugins = [
-    babel({
-      exclude: "node_modules/**",
-      externalHelpers: true
-    })
-  ],
+  babel({
+    exclude: "node_modules/**",
+    externalHelpers: true
+  })
+],
   config = {
     input: "./src/form-pages.js",
     output: {
@@ -29,10 +30,10 @@ switch (process.env.BUILD) {
       }), livereload({
         watch: ['demo', 'dist', 'src']
       }),
-      sass({
-        insert: true,
-        output: false
-      }));
+        sass({
+          insert: true,
+          output: false
+        }));
     }
     plugins.push(sass({
       insert: false,
@@ -49,6 +50,9 @@ switch (process.env.BUILD) {
         processor: css => postcss([cssnano])
           .process(css)
           .then(result => result.css)
+      }),
+      strip({
+        debugger: true
       })
     );
     config = Object.assign({}, config, {

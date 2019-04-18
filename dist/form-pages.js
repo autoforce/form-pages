@@ -141,12 +141,14 @@
      * Configures events to the plugin
      * @param {string} eventName
      * @param {function} cb Event callback
+     * @param {string} filter
      * See {@tutorial event-handling}
      */
 
 
     FormPages.prototype.on = function (eventName, cb) {
-      this.$element.on(eventName, null, {
+      var filter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      this.$element.on(eventName, filter, {
         currentPage: this.currentPage
       }, cb);
     };
@@ -208,8 +210,9 @@
 
 
           self.options[callback.name] = callbackFn.bind(self.$element, eventData);
-          self.on(callback.associatedEvent, self.options[callback.name]);
-        }); // If valid, we always move on next or previous events.
+          callback.associatedEvent && self.on(callback.associatedEvent, self.options[callback.name]);
+        });
+        self.options.shouldMoveForwards = self.options.shouldMoveForwards.bind(self); // If valid, we always move on next or previous events.
 
         self.on(Events.PREV_PAGE, function () {
           self.goToPrevPage();
@@ -231,7 +234,7 @@
             e.preventDefault();
             self.canMoveForwards() && self.options.shouldMoveForwards() && self.trigger(Events.NEXT_PAGE);
           }
-        });
+        }, "".concat(self.options.prevButtonClass, ", ").concat(self.options.nextButtonClass));
       }
 
       function configureContainerFormClasses() {

@@ -107,6 +107,7 @@ window.lunrData = {
           "configur",
           "event",
           "eventnam",
+          "filter",
           "formpages#on",
           "function",
           "plugin"
@@ -662,6 +663,26 @@ window.lunrData = {
                             "tf": 110
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "i": {
+            "docs": {},
+            "l": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "FormPages.html#on": {
+                        "ref": "FormPages.html#on",
+                        "tf": 33.33333333333333
                       }
                     }
                   }
@@ -1344,7 +1365,7 @@ window.lunrData = {
                           },
                           "FormPages.html#on": {
                             "ref": "FormPages.html#on",
-                            "tf": 50
+                            "tf": 33.33333333333333
                           }
                         }
                       }
@@ -1971,7 +1992,7 @@ window.lunrData = {
             "docs": {
               "FormPages.html#on": {
                 "ref": "FormPages.html#on",
-                "tf": 50
+                "tf": 33.33333333333333
               }
             }
           },
@@ -2333,7 +2354,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 143
+      "length": 144
     },
     "corpusTokens": [
       "adjust",
@@ -2363,6 +2384,7 @@ window.lunrData = {
       "element",
       "event",
       "eventnam",
+      "filter",
       "fork",
       "form",
       "formpag",
@@ -2526,7 +2548,7 @@ window.lunrData = {
     "FormPages.html#on": {
       "id": "FormPages.html#on",
       "kind": "function",
-      "title": "on( eventName, cb )",
+      "title": "on( eventName, cb, filter )",
       "longname": "FormPages#on",
       "name": "on",
       "tags": "FormPages#on on",

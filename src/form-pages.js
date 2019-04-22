@@ -27,6 +27,7 @@ import { getOptionsSelectorAlphaChars } from "./utils.js";
  * @property {function?} onNextPage Callback for when the form goes to the next page.
  * @property {function?} onPrevPage Callback for when the form goes to the previous page.
  * @property {function?} onSubmitForm Callback for when the form gets submitted.
+ * @property {function?} onRecalculateContainerHeight Callback for when the form's container height is recalculated. Triggered **only** when `adaptiveContainerHeight` is true.
  * @property {function?} shouldMoveForwards Callback to validate if the form should move forwards. Useful for validation.
  */
 
@@ -51,7 +52,8 @@ const PLUGIN_NAME = "formPages",
     NEXT_PAGE: `next.page.${EVENT_NAMESPACE_PREFIX}`,
     PREV_PAGE: `prev.page.${EVENT_NAMESPACE_PREFIX}`,
     INITIALIZED: `initialized.${EVENT_NAMESPACE_PREFIX}`,
-    PAGE_MOVED: `moved.${EVENT_NAMESPACE_PREFIX}`
+    PAGE_MOVED: `moved.${EVENT_NAMESPACE_PREFIX}`,
+    UPDATE_ADAPTIVE_CONTAINER_HEIGHT: `recalculate-height.${EVENT_NAMESPACE_PREFIX}`
   },
   PaginationDirection = {
     HORIZONTAL: "horizontal",
@@ -73,6 +75,10 @@ const PLUGIN_NAME = "formPages",
     {
       name: "onMovedPage",
       associatedEvent: Events.PAGE_MOVED
+    },
+    {
+      name: "onRecalculateContainerHeight",
+      associatedEvent: Events.UPDATE_ADAPTIVE_CONTAINER_HEIGHT
     }
   ];
 
@@ -94,9 +100,8 @@ let defaults = {
   shouldMoveForwards() {
     return true;
   },
-  onMovedPage() {
-
-  }
+  onMovedPage() { },
+  onRecalculateContainerHeight() { }
 };
 
 /**
@@ -189,6 +194,8 @@ function init() {
       self.goToNextPage();
     } );
 
+    self.on( Events.UPDATE_ADAPTIVE_CONTAINER_HEIGHT, updateAdaptiveContainerHeight.bind( self ) );
+
     self.on( "click", function( e ) {
       const $target = $( e.target );
 
@@ -249,8 +256,20 @@ function init() {
 function adaptContainerHeightOnChangePage() {
   console.group( "adaptContainerHeightOnChangePage" );
   console.log( "this.getCurrentPageElement():", this.getCurrentPageElement() );
-  this.$formPagesContainer.height( this.getCurrentPageElement().height() );
+  this.trigger( Events.UPDATE_ADAPTIVE_CONTAINER_HEIGHT );
   console.groupEnd();
+};
+
+/**
+ * If the `adaptiveContainerHeight` is set to true, this function recalculates
+ * the height of the container.
+ */
+function updateAdaptiveContainerHeight() {
+  if ( !this.options.adaptiveContainerHeight ) {
+    return;
+  }
+
+  this.$formPagesContainer.css( "height", this.getCurrentPageElement().height() );
 };
 
 /**

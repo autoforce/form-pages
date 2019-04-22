@@ -160,3 +160,40 @@ Called when the form moves to the previous page.
 #### `moved.fp`
 ##### Associated callback: `onMovedPage`
 Called when the form moves to any direction.
+
+## Tips
+### Recalculate adaptive form container height
+Sometimes it's useful to recalculate your form's container height lets say, when
+you use a plugin to validate it and it add labels below the invalid fields.
+To do so, the only thing you need to do is to trigger the event
+`recalculate-height.fp` from your plugin's instance.
+
+```javascript
+var myForm = $('.myForm');
+myForm.formPages();
+myForm.trigger('recalculate-height.fp');
+```
+
+### Validating current page
+When using [jQuery Validation Plugin](https://jqueryvalidation.org/) you can do a partial validation of your form. This is usually combined with the hability to move to the next page or not. This could be an implementation in such case:
+
+```javascript
+var myForm = $('.myForm');
+myForm.validate({
+  /* Your validation rules. */
+});
+
+myForm.formPages({
+  // Calling the `valid` method in a set of fields will validate only that set of
+  // fields, not the entire form.
+
+  // Using this approach to validate all the form would break the plugin's
+  // behavior, since some following pages could have invalid fields and
+  // `shouldMoveForwards` would return `false`
+  shouldMoveForwards() {
+    return this.getCurrentPageElement()
+      .find("input")
+      .valid();
+  }
+});
+```

@@ -232,7 +232,32 @@ bounds. e.g. Moving to the next page when already in the last one, or moving to
 a negative index, since the index <code>0</code> is the first page.</p>
 <h4><code>next.page.fp</code></h4><h5>Associated callback: <code>onNextPage</code></h5><p>Called when the form moves to the next page.</p>
 <h4><code>prev.page.fp</code></h4><h5>Associated callback: <code>onPrevPage</code></h5><p>Called when the form moves to the previous page.</p>
-<h4><code>moved.fp</code></h4><h5>Associated callback: <code>onMovedPage</code></h5><p>Called when the form moves to any direction.</p></article>
+<h4><code>moved.fp</code></h4><h5>Associated callback: <code>onMovedPage</code></h5><p>Called when the form moves to any direction.</p>
+<h2>Tips</h2><h3>Recalculate adaptive form container height</h3><p>Sometimes it's useful to recalculate your form's container height lets say, when
+you use a plugin to validate it and it add labels below the invalid fields.
+To do so, the only thing you need to do is to trigger the event
+<code>recalculate-height.fp</code> from your plugin's instance.</p>
+<pre class="prettyprint source lang-javascript"><code>var myForm = $('.myForm');
+myForm.formPages();
+myForm.trigger('recalculate-height.fp');</code></pre><h3>Validating current page</h3><p>When using <a href="https://jqueryvalidation.org/">jQuery Validation Plugin</a> you can do a partial validation of your form. This is usually combined with the hability to move to the next page or not. This could be an implementation in such case:</p>
+<pre class="prettyprint source lang-javascript"><code>var myForm = $('.myForm');
+myForm.validate({
+  /* Your validation rules. */
+});
+
+myForm.formPages({
+  // Calling the `valid` method in a set of fields will validate only that set of
+  // fields, not the entire form.
+
+  // Using this approach to validate all the form would break the plugin's
+  // behavior, since some following pages could have invalid fields and
+  // `shouldMoveForwards` would return `false`
+  shouldMoveForwards() {
+    return this.getCurrentPageElement()
+      .find(&quot;input&quot;)
+      .valid();
+  }
+});</code></pre></article>
 		</section>
 			</div>
 				<div class="col-md-3 side-content">

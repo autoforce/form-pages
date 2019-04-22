@@ -14,14 +14,16 @@ import { getOptionsSelectorAlphaChars } from "./utils.js";
  * All properties which the suffix is "Class" can be an array, which will be
  * joined and cleaned before being added to the elements.
  * The value of `this` on all callbacks is the jQuery element you applied the plugin to.
- * @property {string} formPageClass=".form-pages__page" The selector which will separate the form pages.
  * @property {string} activePageClass=".form-pages__page--active" The active page selector.
+ * @property {string} adaptiveContainerHeight=true Tells if the form container height must be adaptive to the active page.
+ * @property {string} formPageClass=".form-pages__page" The selector which will separate the form pages.
+ * @property {string} formPagesContainerAdaptiveHeightClass=".form-pages__page-container--adaptive-height" The selector for the pages container when adaptiveContainerHeight is set to true.
  * @property {string} nextButtonClass=".form-pages__next-button" The selector for the "next" button.
  * @property {string} prevButtonClass=".form-pages__prev-button" The selector for the "previous" button.
- * @property {string} formPagesContainerClass=".form-pages__page-container" The selector for the pages container which holds all the pages.
  * @property {string} submitButtonClass=".form-pages__submit-button" The selector for the form submit button.
  * @property {PaginationDirection} paginationDirection="horizontal" The direction that the form will move.
  * @property {function?} onInitialized Callback for when plugin finishes loading.
+ * @property {function?} onMovedPage Callback for when page moves.
  * @property {function?} onNextPage Callback for when the form goes to the next page.
  * @property {function?} onPrevPage Callback for when the form goes to the previous page.
  * @property {function?} onSubmitForm Callback for when the form gets submitted.
@@ -48,7 +50,8 @@ const PLUGIN_NAME = "formPages",
   Events = {
     NEXT_PAGE: `next.page.${EVENT_NAMESPACE_PREFIX}`,
     PREV_PAGE: `prev.page.${EVENT_NAMESPACE_PREFIX}`,
-    INITIALIZED: `initialized.${EVENT_NAMESPACE_PREFIX}`
+    INITIALIZED: `initialized.${EVENT_NAMESPACE_PREFIX}`,
+    PAGE_MOVED: `moved.${EVENT_NAMESPACE_PREFIX}`
   },
   PaginationDirection = {
     HORIZONTAL: "horizontal",
@@ -66,34 +69,43 @@ const PLUGIN_NAME = "formPages",
     {
       name: "onInitialized",
       associatedEvent: Events.INITIALIZED
+    },
+    {
+      name: "onMovedPage",
+      associatedEvent: Events.PAGE_MOVED
     }
   ];
 
 
 /** @type {FormPagesOptions} */
 let defaults = {
+  activePageClass: ".form-pages__page--active",
+  adaptiveContainerHeight: true,
   formPageClass: ".form-pages__page",
+  formPagesContainerClass: ".form-pages__page-container",
+  formPagesContainerAdaptiveHeightClass: "form-pages__page-container--adaptive-height",
   nextButtonClass: ".form-pages__next-button",
+  paginationDirection: PaginationDirection.HORIZONTAL,
   prevButtonClass: ".form-pages__prev-button",
   submitButtonClass: ".form-pages__submit-button",
-  paginationDirection: PaginationDirection.HORIZONTAL,
-  activePageClass: ".form-pages__page--active",
-  formPagesContainerClass: ".form-pages__page-container",
+  onInitialized() { },
   onNextPage() { },
   onPrevPage() { },
-  onInitialized() { },
   shouldMoveForwards() {
     return true;
+  },
+  onMovedPage() {
+
   }
-},
-  $formPagesContainer = $( "<div></div>" ),
-  $pages;
+};
 
 /**
  * @class
  * @description Creates the FormPages component.
  * @property {jQuery} $element The form which the plugin is constructed upon.
  * @property {FormPagesOptions} options
+ * @property {jQuery} $formPagesContainer The container of the pages
+ * @property {jQuery} $pages The available pages
  * @property {number} currentPage The current page index, starting on zero.
  * @param {jQuery!} element The main form element.
  * @param {FormPagesOptions?} options
@@ -102,79 +114,43 @@ function FormPages( element, options ) {
   this.$element = $( element );
   this.options = $.extend( {}, defaults, options );
 
+  this.$formPagesContainer = $( "<div></div>" );
+  this.$pages = null;
+
   // Control variables
-  this.currentPage = 0;
+  this.currentPageIndexIndex = 0;
 
   this._defaults = defaults;
   this._name = PLUGIN_NAME;
 
   this.getOptionsSelectorAlphaChars = getOptionsSelectorAlphaChars.bind( this );
 
-  this.init();
+  init.call( this );
 }
 
 /**
- * Makes a proxy and calls events to the main `$element` object, passing the
- * current page as event data.
- * @param {string} eventName
- * @param {object} params Params passed to the jQuery trigger function to be attached as event data.
- */
-FormPages.prototype.trigger = function( eventName, params = {} ) {
-  this.$element.trigger( eventName, $.extend( {}, params,
-    { currentPage: this.currentPage } ) );
-};
-
-/**
- * Configures events to the plugin
- * @param {string} eventName
- * @param {function} cb Event callback
- * @param {string} filter
- * See {@tutorial event-handling}
- */
-FormPages.prototype.on = function( eventName, cb, filter = null ) {
-  this.$element.on( eventName, filter, { currentPage: this.currentPage }, cb );
-};
-
-/**
- * Checks if the pages can move forwards.
- * @return {boolean}
- */
-FormPages.prototype.canMoveForwards = function() {
-  return this.currentPage + 1 < this.getTotalPages();
-};
-
-/**
- * Checks if the pages can move backwards.
- * @return {boolean}
- */
-FormPages.prototype.canMoveBackwards = function() {
-  return this.currentPage - 1 >= 0;
-};
-
-/**
  * Initializes the plugin.
- * @private
  */
-FormPages.prototype.init = function() {
+function init() {
   const self = this;
 
-  $pages = this.$element.find( this.options.formPageClass );
+  this.$pages = this.$element.find( this.options.formPageClass );
 
   // Adding the form pages container class to the $formPagesContainer.
-  $formPagesContainer.addClass(
+  this.$formPagesContainer.addClass(
     this.getOptionsSelectorAlphaChars( "formPagesContainerClass" ) );
 
   // Step 1: Add the correspondent classes
   // Removing the active classes from the pages as a way to prevent wrongly
   // presented pages, then we add the active page class to the first page.
-  $pages
+  this.$pages
     .removeClass( this.getOptionsSelectorAlphaChars( "activePageClass" ) )
     .first()
     .addClass( this.getOptionsSelectorAlphaChars( "activePageClass" ) );
 
   // Step 2: Move the pages to the container
-  $pages.appendTo( $formPagesContainer );
-  this.$element.append( $formPagesContainer );
+  this.$pages.appendTo( this.$formPagesContainer );
+  this.$element.append( this.$formPagesContainer );
 
   // Step 3: Configuring the default triggers.
   function configureDefaultTriggers() {
@@ -186,10 +162,11 @@ FormPages.prototype.init = function() {
         return;
       }
 
-      let eventData = { currentPage: self.currentPage };
+      let eventData = { currentPage: self.currentPageIndexIndex };
 
       // Some special eventData treatment for some events.
-      if ( callback.associatedEvent === Events.INITIALIZED ) {
+      if ( callback.associatedEvent === Events.INITIALIZED ||
+        callback.associatedEvent === Events.PAGE_MOVED ) {
         eventData = { instance: self };
       }
 
@@ -250,12 +227,76 @@ FormPages.prototype.init = function() {
   configureDefaultTriggers();
   configureContainerFormClasses();
 
+  if ( self.options.adaptiveContainerHeight ) {
+    console.log( `Should have adaptive height: ${self.options.adaptiveContainerHeight}` );
+    self.$formPagesContainer
+      .addClass( self.options.formPagesContainerAdaptiveHeightClass )
+      .height( self.getCurrentPageElement().height() );
+    self.on( Events.PAGE_MOVED, adaptContainerHeightOnChangePage.bind( self ) );
+  }
+
   self.options.onInitialized.call( this, this );
 
   // Configuring window resize trigger to recalculate the pages translation
   $( window ).on( "resize", function() {
-    self.translateToPage( self.currentPage );
+    self.translateToPage( self.currentPageIndexIndex );
   } );
+}
+
+/**
+ * Adapts the container height when page changed.
+ */
+function adaptContainerHeightOnChangePage() {
+  console.group( "adaptContainerHeightOnChangePage" );
+  console.log( "this.getCurrentPageElement():", this.getCurrentPageElement() );
+  this.$formPagesContainer.height( this.getCurrentPageElement().height() );
+  console.groupEnd();
+};
+
+/**
+ * Makes a proxy and calls events to the main `$element` object, passing the
+ * current page as event data.
+ * @param {string} eventName
+ * @param {object} params Params passed to the jQuery trigger function to be attached as event data.
+ */
+FormPages.prototype.trigger = function( eventName, params = {} ) {
+  this.$element.trigger( eventName, $.extend( {}, params,
+    {
+      currentPage: this.currentPageIndexIndex,
+      formPagesContainer: this.$formPagesContainer,
+      currentPageElement: this.getCurrentPageElement()
+    } ) );
+};
+
+/**
+ * Configures events to the plugin
+ * @param {string} eventName
+ * @param {function} cb Event callback
+ * @param {string} filter
+ * See {@tutorial event-handling}
+ */
+FormPages.prototype.on = function( eventName, cb, filter = null ) {
+  this.$element.on( eventName, filter, {
+    currentPage: this.currentPageIndexIndex,
+    formPagesContainer: this.$formPagesContainer,
+    currentPageElement: this.getCurrentPageElement()
+  }, cb );
+};
+
+/**
+ * Checks if the pages can move forwards.
+ * @return {boolean}
+ */
+FormPages.prototype.canMoveForwards = function() {
+  return this.currentPageIndexIndex + 1 < this.getTotalPages();
+};
+
+/**
+ * Checks if the pages can move backwards.
+ * @return {boolean}
+ */
+FormPages.prototype.canMoveBackwards = function() {
+  return this.currentPageIndexIndex - 1 >= 0;
 };
 
 /**
@@ -283,29 +324,33 @@ FormPages.prototype.goTo = function( page ) {
 
   // Page must be bigger than zero and less than the total pages
   if ( !( page < 0 || page > this.getTotalPages() ) ) {
-    movingDirection = page > this.currentPage ? "next" : "prev";
-    this.currentPage = page;
+    movingDirection = page > this.currentPageIndexIndex ? "next" : "prev";
+    this.currentPageIndexIndex = page;
+    console.log( `page: ${page}` );
+    console.log( `this.currentPageIndexIndex: ${this.currentPageIndexIndex}` );
   } else {
     movingDirection = "none";
   }
 
   if ( movingDirection === "none" ) {
-    return this.currentPage;
+    return this.currentPageIndexIndex;
   }
 
   console.log( `movingDirection: ${movingDirection}` );
 
   // Animating the pages
-  const $activePage = $formPagesContainer.find( this.options.activePageClass );
+  const $activePage = this.$formPagesContainer.find( this.options.activePageClass );
 
   $activePage
     .removeClass( this.getOptionsSelectorAlphaChars( "activePageClass" ) );
-
   this.translateToPage( page );
 
   console.groupEnd();
 
-  return this.currentPage;
+  // Triggering PAGE_MOVED event.
+  this.trigger( Events.PAGE_MOVED );
+
+  return this.currentPageIndexIndex;
 };
 
 /**
@@ -316,25 +361,25 @@ FormPages.prototype.goTo = function( page ) {
  */
 FormPages.prototype.translateToPage = function( page ) {
   console.group( `translateToPage(${page})` );
-  console.log( `currentPage: ${this.currentPage}` );
+  console.log( `currentPage: ${this.currentPageIndexIndex}` );
 
   // $nextPageToBeShown can be the previous page also. "next" in this case does
   // not imply direction or position.
-  let $nextPageToBeShown = $formPagesContainer
+  let $nextPageToBeShown = this.$formPagesContainer
     .find( this.options.formPageClass ).eq( page ),
     translationX =
-      `${this.getPageDimensions().width * ( this.currentPage )}`;
+      `${this.getPageDimensions().width * ( this.currentPageIndexIndex )}`;
 
   console.log( "$nextPageToBeShown: ", $nextPageToBeShown );
 
-  if ( page > this.currentPage - 1 ) {
-    console.log( "this.currentPage > page: ", this.currentPage > page );
+  if ( page > this.currentPageIndexIndex - 1 ) {
+    console.log( "this.currentPageIndexIndex > page: ", this.currentPageIndexIndex > page );
     translationX = `-${translationX}`;
   }
 
   $nextPageToBeShown.addClass(
     this.getOptionsSelectorAlphaChars( "activePageClass" ) );
-  $formPagesContainer.css( "transform",
+  this.$formPagesContainer.css( "transform",
     `translateX(${translationX}px)` );
   console.groupEnd();
 };
@@ -346,11 +391,11 @@ FormPages.prototype.translateToPage = function( page ) {
 FormPages.prototype.goToNextPage = function() {
   console.group( "goToNextPage()" );
   console.log( "shouldMoveForwards() ", this.options.shouldMoveForwards() );
-  console.log( "this.currentPage: " + this.currentPage );
+  console.log( "this.currentPageIndexIndex: " + this.currentPageIndexIndex );
   console.groupEnd();
   return this.options.shouldMoveForwards() ?
-    this.goTo( this.currentPage + 1 ) :
-    this.currentPage;
+    this.goTo( this.currentPageIndexIndex + 1 ) :
+    this.currentPageIndexIndex;
 };
 
 /**
@@ -360,9 +405,9 @@ FormPages.prototype.goToNextPage = function() {
 FormPages.prototype.goToPrevPage = function() {
   console.group( "goToNextPage()" );
   console.log( "shouldMoveForwards() ", this.options.shouldMoveForwards() );
-  console.log( "this.currentPage: " + this.currentPage );
+  console.log( "this.currentPageIndexIndex: " + this.currentPageIndexIndex );
   console.groupEnd();
-  return this.goTo( this.currentPage - 1 );
+  return this.goTo( this.currentPageIndexIndex - 1 );
 };
 
 /**
@@ -399,7 +444,7 @@ FormPages.prototype.getPageDimensions = function( pageNumber = 1 ) {
  * @returns {jQuery|null}
  */
 FormPages.prototype.getCurrentPageElement = function() {
-  return this.$element.find( this.options.formPageClass ).eq( this.currentPage );
+  return this.$element.find( this.options.formPageClass ).eq( this.currentPageIndexIndex );
 };
 
 

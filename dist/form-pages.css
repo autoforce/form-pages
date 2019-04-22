@@ -6,7 +6,11 @@
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  transition: transform 0.45s ease-in-out;
+  transition: transform 0.45s ease-in-out, height 0.45s ease-in-out;
+}
+
+.form-pages__page-container--adaptive-height {
+  align-items: flex-start;
 }
 
 .form-pages__page {

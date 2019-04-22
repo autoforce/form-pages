@@ -21,7 +21,7 @@ test('it does not move to next page when out of bounds', withPage,
       const $el = $(selector);
       $el.formPages({
         onNextPage(e) {
-          nextCallbackCalledOutOfBounds = e.currentPage > $el
+          nextCallbackCalledOutOfBounds = e.currentPageIndex > $el
             .data('plugin_formPages').getTotalPages();
         },
       });
@@ -42,7 +42,7 @@ test('it does not move to previous page when out of bounds', withPage,
       const $el = $(selector);
       $el.formPages({
         onPrevPage(e) {
-          prevCallbackCalledOutOfBounds = e.currentPage < 0;
+          prevCallbackCalledOutOfBounds = e.currentPageIndex < 0;
         },
       });
 

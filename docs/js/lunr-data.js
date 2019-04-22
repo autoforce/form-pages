@@ -201,6 +201,17 @@ window.lunrData = {
           "page",
           "parent'"
         ],
+        "FormPages.html#getCurrentPageElement": [
+          "activ",
+          "formpages#getcurrentpageel",
+          "function",
+          "get",
+          "getcurrentpageel",
+          "jqueri",
+          "jquery|nul",
+          "object",
+          "page"
+        ],
         "FormPages.html#getPageDimensions": [
           "adjust",
           "anim",
@@ -213,17 +224,6 @@ window.lunrData = {
           "page",
           "pagenumb",
           "possibl"
-        ],
-        "FormPages.html#getCurrentPageElement": [
-          "activ",
-          "formpages#getcurrentpageel",
-          "function",
-          "get",
-          "getcurrentpageel",
-          "jqueri",
-          "jquery|nul",
-          "object",
-          "page"
         ],
         "module-Utils.html": [
           "modul",
@@ -713,12 +713,12 @@ window.lunrData = {
                             "ref": "FormPages.html#getParentDimensions",
                             "tf": 110
                           },
-                          "FormPages.html#getPageDimensions": {
-                            "ref": "FormPages.html#getPageDimensions",
-                            "tf": 110
-                          },
                           "FormPages.html#getCurrentPageElement": {
                             "ref": "FormPages.html#getCurrentPageElement",
+                            "tf": 110
+                          },
+                          "FormPages.html#getPageDimensions": {
+                            "ref": "FormPages.html#getPageDimensions",
                             "tf": 110
                           }
                         }
@@ -800,13 +800,13 @@ window.lunrData = {
                   "ref": "FormPages.html#getParentDimensions",
                   "tf": 12.5
                 },
-                "FormPages.html#getPageDimensions": {
-                  "ref": "FormPages.html#getPageDimensions",
-                  "tf": 7.142857142857142
-                },
                 "FormPages.html#getCurrentPageElement": {
                   "ref": "FormPages.html#getCurrentPageElement",
                   "tf": 10
+                },
+                "FormPages.html#getPageDimensions": {
+                  "ref": "FormPages.html#getPageDimensions",
+                  "tf": 7.142857142857142
                 }
               },
               "t": {
@@ -1088,13 +1088,13 @@ window.lunrData = {
                     "ref": "FormPages.html#getParentDimensions",
                     "tf": 12.5
                   },
-                  "FormPages.html#getPageDimensions": {
-                    "ref": "FormPages.html#getPageDimensions",
-                    "tf": 7.142857142857142
-                  },
                   "FormPages.html#getCurrentPageElement": {
                     "ref": "FormPages.html#getCurrentPageElement",
                     "tf": 10
+                  },
+                  "FormPages.html#getPageDimensions": {
+                    "ref": "FormPages.html#getPageDimensions",
+                    "tf": 7.142857142857142
                   }
                 },
                 "n": {
@@ -1745,6 +1745,23 @@ window.lunrData = {
               }
             }
           },
+          "c": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "i": {
+                "docs": {},
+                "v": {
+                  "docs": {
+                    "FormPages.html#getCurrentPageElement": {
+                      "ref": "FormPages.html#getCurrentPageElement",
+                      "tf": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
           "d": {
             "docs": {},
             "j": {
@@ -1774,23 +1791,6 @@ window.lunrData = {
                   "FormPages.html#getPageDimensions": {
                     "ref": "FormPages.html#getPageDimensions",
                     "tf": 7.142857142857142
-                  }
-                }
-              }
-            }
-          },
-          "c": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "i": {
-                "docs": {},
-                "v": {
-                  "docs": {
-                    "FormPages.html#getCurrentPageElement": {
-                      "ref": "FormPages.html#getCurrentPageElement",
-                      "tf": 10
-                    }
                   }
                 }
               }
@@ -2805,16 +2805,6 @@ window.lunrData = {
       "summary": "",
       "description": "Gets the pages' parent's dimensions."
     },
-    "FormPages.html#getPageDimensions": {
-      "id": "FormPages.html#getPageDimensions",
-      "kind": "function",
-      "title": "getPageDimensions( pageNumber ) → {Dimensions}",
-      "longname": "FormPages#getPageDimensions",
-      "name": "getPageDimensions",
-      "tags": "FormPages#getPageDimensions getPageDimensions",
-      "summary": "",
-      "description": "Gets the dimensions of the page to help adjust possible animations."
-    },
     "FormPages.html#getCurrentPageElement": {
       "id": "FormPages.html#getCurrentPageElement",
       "kind": "function",
@@ -2824,6 +2814,16 @@ window.lunrData = {
       "tags": "FormPages#getCurrentPageElement getCurrentPageElement",
       "summary": "",
       "description": "Gets the active page as jQuery object."
+    },
+    "FormPages.html#getPageDimensions": {
+      "id": "FormPages.html#getPageDimensions",
+      "kind": "function",
+      "title": "getPageDimensions( pageNumber ) → {Dimensions}",
+      "longname": "FormPages#getPageDimensions",
+      "name": "getPageDimensions",
+      "tags": "FormPages#getPageDimensions getPageDimensions",
+      "summary": "",
+      "description": "Gets the dimensions of the page to help adjust possible animations."
     },
     "module-Utils.html": {
       "id": "module-Utils.html",

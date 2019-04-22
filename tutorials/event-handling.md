@@ -122,3 +122,41 @@ related to Form Pages.
 
 </html>
 ```
+
+## Events explanations
+The plugin have a method `trigger` very similar to jQuery's. This methods
+receives the `eventName` and the `params` you would like to pass to the event.
+
+`params` are **always** merged with the default data passed to the event which are:
+
+### Default event data
+These parameters are **always** in the events payload:
+- `currentPageIndex`: The index of the current page
+- `currentPageElement`: The jQuery object representing the active page
+
+
+### Initialization events
+#### `onInitialized`
+Called when the plugin initialization process is finished.
+
+##### Received data:
+- `instance`: The FormPages instance
+
+### Movement events
+Called when the form pages move in some direction.
+By design, these events **are not** triggered when the movement is out of
+bounds. e.g. Moving to the next page when already in the last one, or moving to
+a negative index, since the index `0` is the first page.
+
+
+#### `next.page.fp`
+##### Associated callback: `onNextPage`
+Called when the form moves to the next page.
+
+#### `prev.page.fp`
+##### Associated callback: `onPrevPage`
+Called when the form moves to the previous page.
+
+#### `moved.fp`
+##### Associated callback: `onMovedPage`
+Called when the form moves to any direction.

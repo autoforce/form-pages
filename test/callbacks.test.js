@@ -84,3 +84,21 @@ test('it respects forward move based on `shouldMoveForwards`', withPage,
 
     t.is(nextCallbackCalled, false);
   });
+
+test('it calls the callback to update the container height', withPage,
+  async (t, page) => {
+    const updateContainerHeightCallbackCalled = await page.evaluate(
+      selector => {
+        let updateContainerHeightCallbackCalled = false;
+        const $el = $(selector);
+        $el.formPages({
+          onRecalculateContainerHeight() {
+            updateContainerHeightCallbackCalled = true;
+          },
+        });
+        $el.find('.form-pages__next-button').first().trigger('click');
+        return updateContainerHeightCallbackCalled;
+      }, pageableFormSelector);
+
+    t.is(updateContainerHeightCallbackCalled, true);
+  });

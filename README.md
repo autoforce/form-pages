@@ -1,4 +1,3 @@
-<img src="https://img.shields.io/badge/made%20with-javascript-blue.svg" alt="made with javascript">
 <img src="https://img.shields.io/badge/-~1.5k%20gzipped-green.svg">
 
 # Form Pages

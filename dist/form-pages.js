@@ -192,7 +192,7 @@
         });
         self.on(Events.UPDATE_ADAPTIVE_CONTAINER_HEIGHT, updateAdaptiveContainerHeight.bind(self));
         self.on("click", function (e) {
-          var $target = $(e.target); // We should prevent default when clicked on "next" or "prev" buttons.
+          var $currentTarget = $(e.currentTarget); // We should prevent default when clicked on "next" or "prev" buttons.
           // to avoid sending the form.
           // We manually check if the form can move forwards or backwards so
           // that we avoid triggering the event when the movement is out of
@@ -200,12 +200,12 @@
 
           console.group("Responding to the 'click' navigation buttons:");
 
-          if ($target.is(self.options.prevButtonClass)) {
+          if ($currentTarget.is(self.options.prevButtonClass)) {
             console.log("Previous button clicked");
             e.preventDefault();
             console.log("self.canMoveBackwards(): ".concat(self.canMoveBackwards()));
             self.canMoveBackwards() && self.trigger(Events.PREV_PAGE);
-          } else if ($target.is(self.options.nextButtonClass)) {
+          } else if ($currentTarget.is(self.options.nextButtonClass)) {
             console.log("Next button clicked");
             e.preventDefault();
             console.log("self.canMoveForwards(): ".concat(self.canMoveForwards()));

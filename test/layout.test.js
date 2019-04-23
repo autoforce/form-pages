@@ -1,18 +1,9 @@
 import test from 'ava';
 import withPage from './helpers/withPage';
-import { fixture, libResource } from './helpers/utils';
+import { configureDefaultEnvironment } from './helpers/utils';
 const pageableFormSelector = '.pageable-form';
-const basicFilePath = `file://${fixture('basic.html')}`;
-const baseLibFile = libResource('form-pages.js');
-const baseLibStyle = libResource('form-pages.css');
 
-test.beforeEach(t => {
-  t.context.data = {
-    basicFilePath,
-    baseLibFile,
-    baseLibStyle,
-  };
-});
+test.beforeEach(configureDefaultEnvironment);
 
 test(
   'it correctly sets the container height when `adaptiveHeight` is true',
@@ -24,8 +15,8 @@ test(
         onMovedPage() {
           const instance = $el.data('plugin_formPages');
           containerHeightMatchesActivePage =
-                        instance.$formPagesContainer.height() ===
-                        instance.getCurrentPageElement().height();
+            instance.$formPagesContainer.height() ===
+            instance.getCurrentPageElement().height();
         },
       });
 

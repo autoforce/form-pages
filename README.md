@@ -16,7 +16,7 @@ $ yarn add form-pages
 
 ## Usage
 
-1. `require`, `import` or add the library to your HTML.
+1. `require`, `import` or add the library to your HTML (https://cdn.jsdelivr.net/gh/autoforce/form-pages/dist/form-pages.min.js).
 2. Include the `dist/from-pages.css` style to your page.
 3. Setup your markup:
 

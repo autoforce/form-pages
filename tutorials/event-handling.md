@@ -12,9 +12,10 @@ related to Form Pages.
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Demo form</title>
+  <!-- Bootstrap is not mandatory. We're using here for sake of convenience. -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="form-pages.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/autoforce/form-pages/dist/form-pages.min.js"></script>
   <link rel="stylesheet" href="form-pages.css">
 </head>
 

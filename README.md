@@ -1,3 +1,5 @@
+<img src="https://img.shields.io/badge/-~1.5k%20gzipped-green.svg">
+
 # Form Pages
 
 This plugin is useful to paginate your forms. You'll find here events to detect

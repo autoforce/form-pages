@@ -1,18 +1,9 @@
 import test from 'ava';
 import withPage from './helpers/withPage';
-import { fixture, libResource } from './helpers/utils';
+import { configureDefaultEnvironment } from './helpers/utils';
 const pageableFormSelector = '.pageable-form';
-const basicFilePath = `file://${fixture('basic.html')}`;
-const baseLibFile = libResource('form-pages.js');
-const baseLibStyle = libResource('form-pages.css');
 
-test.beforeEach(t => {
-  t.context.data = {
-    basicFilePath,
-    baseLibFile,
-    baseLibStyle,
-  };
-});
+test.beforeEach(configureDefaultEnvironment);
 
 test('it calls the callback when plugin gets initialized', withPage,
   async (t, page) => {
